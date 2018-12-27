@@ -5,7 +5,7 @@
 
 @section StyleSection
 {
-    
+<link href="~/Content/Home.css" rel="stylesheet" />
 }
 
 @section MetaSection
@@ -17,10 +17,55 @@
 
 @section MainSection
 {
-    <div id="videos-home">
+    <nav id="menu2" class="home bar bar-2 hidden-xs bar--absolute bar--transparent">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 text-left-sm hidden-xs">
+                    <div class="bar__module video-logo">
+                        <p>
+                            <a class="videos-logo" href="/">
+                                <img class="logo logo-light" alt="logo" src="img/logo-videos.png">
+                            </a>
+                            <a class="heading-menu" href="/">
+                                Videos Portal
+                            </a>
+                        </p>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-2 col-md-pull-2">
 
-    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-5 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <a class="btn btn--sm type--uppercase" href="#">
+                            <span class="btn__text">
+                                Sign In
+                            </span>
+                        </a>
 
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    <section class="imagebg videobg height-60 text-center" data-overlay="4">
+        <div class="youtube-background" data-video-url="TmQOFWX9D3o" data-start-at="1"></div>
+        <div class="background-image-holder">
+            <img alt="image" src="img/hero-1.jpg" />
+        </div>
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Here's a Youtube video being used as a background</h2>
+                </div>
+            </div>
+        </div>
+    </section>
 }
 
 

@@ -42,7 +42,17 @@
 
     @RenderSection("SiteStyle", false)
 
-
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/jquery.steps.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/BootstrapLayout.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/Stack1.3.7/socicon.css">
     <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/Stack1.3.7/Icomoon.css">
@@ -314,20 +324,7 @@
                 </div>
             </div>
         </div>*@
-    <div id="menu-wrapper">
-
-        <div class="container main-menu-section">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <div class="syncfusion-logo">
-                        <a class="sync-logo-img" href="@(Url.Action("Index", "Home"))">
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     @RenderSection("BreadCrumbSection", false)
 
@@ -342,139 +339,8 @@
 
     @RenderSection("GoogleTrackingSection", required: false)
 
+
     
-    <div id="footer-bottom">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-sm-8 hidden-xs content-small ">
-                    <div class="footer-syncfusion-logo">
-                        <a class="sync-logo-img" href="/">
-                        </a>
-                    </div>
-                    <div class="link">
-                        <a class="social-link" href="/privacy">Privacy Policy</a> |
-                        <a class="social-link" href="/cookie-policy">Cookie Policy</a> |
-                        <a class="social-link" href="/terms-of-use">Terms of Use</a>
-
-                    </div>
-
-                    <div id="copyright-desktop">
-                        <a class="social-link" href="/copyright">Copyright © 2001 - 2018 Syncfusion Inc. All Rights Reserved</a>
-                    </div>
-                </div>
-                <div class="col-sm-4  hidden-xs footer-contact-section">
-                    <div class="footer-contact-fax">
-                        <ul class="list-unstyled">
-                            <li class="list-content">Fax: +1 919.573.0306</li>
-                            <li class="list-content">US: +1 919.481.1974</li>
-                            <li class="list-content">UK: +44 20 7084 6215</li>
-                        </ul>
-                    </div>
-                    <div class="footer-contact-mail">
-                        <ul class="list-unstyled">
-                            <li class="list-content">Toll Free: 1-888-9DOTNET</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-12 footer-icons-section">
-                        <ul id="footer-icon-desktop">
-                            <li>
-                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_facebook_desktop" target="_blank" href="https://www.facebook.com/Syncfusion">
-                                    <i class="footer-social-icon socicon-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_twitter_desktop" target="_blank" href="https://twitter.com/Syncfusion">
-                                    <i class="footer-social-icon socicon-twitter"></i>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_linkedin_desktop" target="_blank" href="https://www.linkedin.com/company/syncfusion?trk=top_nav_home">
-                                    <i class="footer-social-icon socicon-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_google_desktop" target="_blank" href="https://google.com/+SyncfusionIncMorrisville">
-                                    <i class="footer-social-icon socicon-google"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_youtube_desktop" target="_blank" href="https://www.youtube.com/syncfusioninc">
-                                    <i class="footer-social-icon socicon-youtube"></i>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </div>
-
-                </div>
-
-
-                <div class="visible-xs mobile-footer text-center">
-                    <h2> <b>CONTACT US</b></h2>
-                    <ul class="footer-contact-fax">
-                        <li class="list-content">Fax: +1 919.573.0306</li>
-                        <li class="list-content">US: +1 919.481.1974</li>
-                        <li class="list-content">UK: +44 20 7084 6215</li>
-                        <li class="list-content">Toll Free: 1-888-9DOTNET</li>
-
-                    </ul>
-                    <ul class="footer-contact-mail">
-                        <li class="list-content"><a href="mailto:sales@syncfusion.com">sales@syncfusion.com</a></li>
-                    </ul>
-                    <ul id="footer-icon">
-
-                        <li>
-                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_facebook" target="_blank" href="https://www.facebook.com/Syncfusion">
-                                <i class="footer-social-icon socicon-facebook"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_twitter" target="_blank" href="https://twitter.com/Syncfusion">
-                                <i class="footer-social-icon socicon-twitter"></i>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_linkedin" target="_blank" href="https://www.linkedin.com/company/syncfusion?trk=top_nav_home">
-                                <i class="footer-social-icon socicon-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_google" target="_blank" href="https://google.com/+SyncfusionIncMorrisville">
-                                <i class="footer-social-icon socicon-google"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_youtube" target="_blank" href="https://www.youtube.com/syncfusioninc">
-                                <i class="footer-social-icon socicon-youtube"></i>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                    <div class="copyright">
-                        <div class="link">
-                            <a class="social-link" href="/privacy">Privacy Policy</a> |
-                            <a class="social-link" href="/cookie-policy">Cookie Policy</a> |
-                            <a class="social-link" href="/terms-of-use">Terms of Use</a>
-
-                        </div>
-
-                        <div id="copyright">
-                            <a class="social-link" href="/copyright">Copyright © 2001 - 2018 Syncfusion Inc. All Rights Reserved</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
     <div class="IE-notifiyPopup" id="upgradeIE">
         <div class="container popuptext">
             <div>
@@ -790,7 +656,25 @@
 
 
 
-
+    <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+        <i class="stack-interface stack-up-open-big"></i>
+    </a>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/flickity.min.js"></script>
+    <script src="js/easypiechart.min.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/ytplayer.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
+    <script src="js/granim.min.js"></script>
+    <script src="js/jquery.steps.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/twitterfetcher.min.js"></script>
+    <script src="js/spectragram.min.js"></script>
+    <script src="js/smooth-scroll.min.js"></script>
+    <script src="js/scripts.js"></script>
 
 </body>
 </html>
