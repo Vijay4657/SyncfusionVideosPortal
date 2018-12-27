@@ -1,0 +1,796 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en">
+<head>
+    <meta name="verify-v1" content="IL/CbLrfaZd8dG6yRBxpEcby0Eh9lDgM24Mm3DjkTpQ=" />
+    @*Check the Page is Indexing restricted or not*@
+    @if ((ViewBag != null && ViewBag.IsPageIndexRestricted != null && ViewBag.IsPageIndexRestricted) || Request.Url.AbsoluteUri.Contains("staging.syncfusion.com"))
+    {
+        // Restrict the bot crawling
+        <meta name="googlebot" content="nofollow, noindex" />
+        <meta name="ROBOTS" content="nofollow, noindex" />
+    }
+    else
+    {
+        // Allow the bot crawling
+        <meta name="googlebot" content="follow, index" />
+        <meta name="ROBOTS" content="follow, index" />
+    }
+    <meta name="GOOGLE" content="POSITION, #1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @if (Request.CurrentExecutionFilePath == "/")
+    {
+        <meta name="google-site-verification" content="184cQksH4QrAAtLGvYQxoSFRgPZVWbZT9lZmOU25EjU" />
+    }
+    @RenderSection("MetaSection", false)
+
+    @*SEO header section*@
+    @RenderSection("SeoSection", false)
+
+
+
+    @if (IsSectionDefined("TitleSection"))
+    {
+        <title>@RenderSection("TitleSection", false)</title>
+    }
+
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/bootstrap/Integrity/bootstrap3.7.1.min.css">
+
+    @RenderSection("SiteStyle", false)
+
+
+    <link href="~/Content/BootstrapLayout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/Stack1.3.7/socicon.css">
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/Stack1.3.7/Icomoon.css">
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/content/stylesheets/components/Stack1.3.7/layoutfont_cdn.css">
+
+    @RenderSection("StyleSection", false)
+    <style>
+        .async-hide {
+            opacity: 0 !important;
+        }
+    </style>
+    <script>
+        (function (a, s, y, n, c, h, i, d, e) {
+            s.className += ' ' + y; h.start = 1 * new Date;
+            h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
+            (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c); h.timeout = c;
+        })(window, document.documentElement, 'async-hide', 'dataLayer', 4000,
+            { 'GTM-PPJSFC9': true });</script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PT7M48M');</script>
+    <!-- End Google Tag Manager -->
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-8252259-1', 'auto');
+        ga('require', 'GTM-PPJSFC9');
+        ga('send', 'pageview');
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '166971126971821');
+        fbq('track', "PageView");</script>
+
+    <!-- Google Structred Data -->
+    <script type="application/ld+json">
+        {
+        "@@context" : "http://schema.org",
+        "@@type" : "Organization",
+        "url" : "https://www.syncfusion.com/",
+        "logo" : "https://cdn.syncfusion.com/content/images/company-logos/syncfusion_logo.svg",
+        "name" : "Syncfusion",
+        "sameAs" : [ "https://www.linkedin.com/company/syncfusion?trk=top_nav_home",
+        "https://google.com/+SyncfusionIncMorrisville",
+        "https://www.facebook.com/Syncfusion",
+        "https://www.youtube.com/syncfusioninc",
+        "https://twitter.com/Syncfusion" ]
+        }
+    </script>
+
+    @{
+        // Facebook Pixcel code for tracking downloads
+        if (!string.IsNullOrEmpty(HttpContext.Current.Request.QueryString["utm_source"]) && HttpContext.Current.Request.QueryString["utm_source"].ToLower().Contains("facebook_ad") && (
+            HttpContext.Current.Request.Url.AbsolutePath.ToLower().Contains("resources/techportal/whitepaperconfirm/") || HttpContext.Current.Request.Url.AbsolutePath.ToLower().Contains("resources/techportal/ebookconfirm/")
+            || (HttpContext.Current.Request.Url.AbsolutePath.ToLower().Contains("downloads") && HttpContext.Current.Request.Url.AbsolutePath.ToLower().Contains("confirmation"))))
+        {
+            <script>
+                fbq('track', 'Lead', { content_name: '@HttpContext.Current.Request.QueryString["utm_campaign"]' });
+            </script>
+        }
+    }
+    <!-- End Facebook Pixel Code -->
+    <!-- Script for "proxima-nova" font -->
+    <script>
+        (function () {
+            var config = {
+                kitId: 'pfh7zyk',
+                scriptTimeout: 3000
+            };
+            var h = document.getElementsByTagName('html')[0];
+            h.className += ' wf-loading';
+            var t = setTimeout(function () {
+                h.className = h.className.replace(/(\s|^)wf-loading(\s|$)/g, ' ');
+                h.className += ' wf-inactive';
+            }, config.scriptTimeout);
+            var d = false;
+            var tk = document.createElement('script');
+            tk.src = '//use.typekit.net/' + config.kitId + '.js';
+            tk.type = 'text/javascript';
+            tk.async = 'true';
+            tk.onload = tk.onreadystatechange = function () {
+                var rs = this.readyState;
+                if (d || rs && rs != 'complete' && rs != 'loaded') return;
+                d = true;
+                clearTimeout(t);
+                try { Typekit.load(config); } catch (e) { }
+            };
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(tk, s);
+        })();
+    </script>
+    @if (Request.Url.ToString().ToLower().IndexOf("/support/directtrac") < 0 && Request.Url.ToString().ToLower().IndexOf("/newthread") < 0 && Request.Url.ToString().ToLower().IndexOf("/support/feedback") < 0 && Request.Url.ToString().ToLower().IndexOf("/forums/reply") < 0)
+    {
+        <script>
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-233131-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+        <!-- Google Code for Remarketing tag -->
+        <script>
+            var google_conversion_id = 1072678817;
+            var google_conversion_label = "q7eHCJ7eiwQQoY-__wM";
+            var google_custom_params = window.google_tag_params;
+            var google_remarketing_only = true;
+        </script>
+        <script src="//www.googleadservices.com/pagead/conversion.js"></script>
+
+    }
+    <script src="https://www.xing-share.com/plugins/login.js" defer></script>
+</head>
+<body>
+    <!-- Facebook Pixel Code -->
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=166971126971821&ev=PageView&noscript=1" alt="Facebook Pixel Code" />
+    </noscript>
+
+    <!-- Google Code for Remarketing tag -->
+    <noscript>
+        <div style="display: inline;">
+            <img height="1" width="1" style="border-style: none;" alt="Google Code for Remarketing tag" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1072678817/?value=0&amp;label=q7eHCJ7eiwQQoY-__wM&amp;guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT7M48M"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+
+
+    @if (Request.Cookies["CookieNotification_v1"] == null)
+    {
+        @*@*<style>
+                 #footer-bottom {
+                padding-bottom: 50px;
+            }
+            </style>*@
+        <div id="CookieNotification">
+            <div class="container">
+                <div class="row" style="color:#000000;font-size:13px;padding:0px 50px 0px 30px">
+                    <div class="col-lg-10 col-md-9 col-sm-10 col-xs-12 h6 vcenter" style="margin-bottom:0px;font-size:13px;line-height: 1.5em;">
+                        We use cookies to give you the best experience on our website. If you continue to browse, then you agree to our <a href="/privacy" style="text-decoration:underline;" class="">privacy policy</a> and <a href="/cookie-policy" style="text-decoration:underline;">cookie policy</a>. (Last updated on : November 16, 2018).
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-1 col-xs-12 vcenter agreebutton">
+                        <button id="cookiesubs" type="button" class="btn  btn--stack  btn--primary" style="color:white; display: inline-block;font-size:13px;padding: 0px 25px;border-radius: 3px;">
+                            <span class="btn--text h6" style="font-size:13px">OK</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div id="ie-notification" style="display:none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 error-message">
+                    Microsoft has ended support for older versions of IE. For the best experience, upgrade to the latest version of IE, or view this page in another browser.
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 close-button">
+                    <img id="close-icon" src="//cdn.syncfusion.com/content/images/common/close-icon-image.png" alt="close icon" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Request.Cookies["WebinarNotification"] == null && !Request.Url.AbsolutePath.Contains("/ebooks/") && !Request.Url.AbsolutePath.Contains("/downloads/metrostudio/confirmation"))
+    {
+        <div id="webinar_popup_temp" style="display: none;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 common-message hidden-xs largeview">
+                        <span id="description-webinar" class="webinarad-banner"><a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="webinar-tag" target="_blank">BLACK FRIDAY SALE: NEW CUSTOMERS - USE CODE <span class="bold-tiny">"BLACKFRIDAY2018"</span> FOR UP TO <span class="bold-tiny">60% OFF</span> 1, 3, AND 5 DEVELOPER PACKS</a></span>
+                        <a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" target="_blank" class="btn webinar-button webinar-tag">BUY NOW</a>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 common-message hidden-lg hidden-md hidden-sm mobileview">
+                        <div id="description"><a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="webinar-tag" target="_blank">BLACK FRIDAY SALE: NEW CUSTOMERS - USE CODE <span class="bold-tiny">"BLACKFRIDAY2018"</span> FOR UP TO <span class="bold-tiny">60% OFF</span> 1, 3, AND 5 DEVELOPER PACKS</a></div>
+                        <div>  <a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="btn webinar-button webinar-tag" target="_blank">BUY NOW</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="webinar_popup_close"></div>
+        </div>
+    }
+    <div class="unconfirmed-error-notification hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-11 unconfirmed-error-message small">
+                    Unfortunately, activation email could not send to your email. Please <span class="content-bold resend">try again.</span>
+                </div>
+            </div>
+        </div>
+        <div id="close-icon-not-activated" class="user-not-activated-close activation-unconfirmed-error-notification-close"></div>
+    </div>
+    @*@if (Request.Cookies["PrivacyPolicy"] == null)
+        {
+            <div id="privacypolicy_popup">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 privacy-message">
+                            <span id="Message">Syncfusion has new <a href="/privacy" style="text-decoration:underline;">privacy terms</a> and <a href="/cookie-policy" style="text-decoration:underline;">cookie policies</a> in effect May 24, 2018.</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="close-icon" class="policy-close-icon"></div>
+            </div>
+        }*@
+    @*@if (Request.Cookies["Maintenance"] == null)
+        {
+             <div id="maintenance_popup" style="display:none;color: rgb(139, 109, 59); border: 1px solid rgb(251, 247, 227); background-color: rgb(251, 247, 227); border-radius: 3px; padding: 20px 0px 20px 10px; font-weight: bold;">
+                 <div class="container">
+                     <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 maintenance-message">
+                             <span id="warningIcon" style="margin-left: 20px" ;><img src="https://cdn.syncfusion.com/content/images/home/warning.png" /></span>
+                             <span id="Error_Message">Syncfusion.com will be temporarily unavailable due to server maintenance from Dec 5, 2018, 4.30 PM EST to Dec 5, 2018, 4.40 PM EST.</span>
+                         </div>
+                         <span class="close-button" style="float: right;position: absolute;right: 2%;top: 2%;">
+                             <img id="close_maintenance" class="maintenance-close-icon " src="//cdn.syncfusion.com/content/images/common/close-icon-image.png" />
+                         </span>
+
+                     </div>
+                 </div>
+             </div>
+        }*@
+    @*<div id="cookie-message">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 message">
+                            This site uses cookies to deliver a better, more personalized experience. <a class="learn_more" href="/privacy">Learn more</a> about how Syncfusion uses cookies.
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 closeButton">
+                            <img id="close_icon" src="//cdn.syncfusion.com/content/images/common/Close.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <div id="menu-wrapper">
+
+        <div class="container main-menu-section">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="syncfusion-logo">
+                        <a class="sync-logo-img" href="@(Url.Action("Index", "Home"))">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("BreadCrumbSection", false)
+
+    @RenderSection("BannerSection", required: false)
+
+    <div id="feedbackButton" class="hide">
+        <img src="//cdn.syncfusion.com/content/images/common/feedback-form.png" alt="Syncfusion Feedback" />
+    </div>
+    <div id="feedbacks-dialogue" class="hide"></div>
+
+    @RenderSection("MainSection", required: false)
+
+    @RenderSection("GoogleTrackingSection", required: false)
+
+    
+    <div id="footer-bottom">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-8 hidden-xs content-small ">
+                    <div class="footer-syncfusion-logo">
+                        <a class="sync-logo-img" href="/">
+                        </a>
+                    </div>
+                    <div class="link">
+                        <a class="social-link" href="/privacy">Privacy Policy</a> |
+                        <a class="social-link" href="/cookie-policy">Cookie Policy</a> |
+                        <a class="social-link" href="/terms-of-use">Terms of Use</a>
+
+                    </div>
+
+                    <div id="copyright-desktop">
+                        <a class="social-link" href="/copyright">Copyright © 2001 - 2018 Syncfusion Inc. All Rights Reserved</a>
+                    </div>
+                </div>
+                <div class="col-sm-4  hidden-xs footer-contact-section">
+                    <div class="footer-contact-fax">
+                        <ul class="list-unstyled">
+                            <li class="list-content">Fax: +1 919.573.0306</li>
+                            <li class="list-content">US: +1 919.481.1974</li>
+                            <li class="list-content">UK: +44 20 7084 6215</li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact-mail">
+                        <ul class="list-unstyled">
+                            <li class="list-content">Toll Free: 1-888-9DOTNET</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 footer-icons-section">
+                        <ul id="footer-icon-desktop">
+                            <li>
+                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_facebook_desktop" target="_blank" href="https://www.facebook.com/Syncfusion">
+                                    <i class="footer-social-icon socicon-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_twitter_desktop" target="_blank" href="https://twitter.com/Syncfusion">
+                                    <i class="footer-social-icon socicon-twitter"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_linkedin_desktop" target="_blank" href="https://www.linkedin.com/company/syncfusion?trk=top_nav_home">
+                                    <i class="footer-social-icon socicon-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_google_desktop" target="_blank" href="https://google.com/+SyncfusionIncMorrisville">
+                                    <i class="footer-social-icon socicon-google"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_youtube_desktop" target="_blank" href="https://www.youtube.com/syncfusioninc">
+                                    <i class="footer-social-icon socicon-youtube"></i>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+
+
+                <div class="visible-xs mobile-footer text-center">
+                    <h2> <b>CONTACT US</b></h2>
+                    <ul class="footer-contact-fax">
+                        <li class="list-content">Fax: +1 919.573.0306</li>
+                        <li class="list-content">US: +1 919.481.1974</li>
+                        <li class="list-content">UK: +44 20 7084 6215</li>
+                        <li class="list-content">Toll Free: 1-888-9DOTNET</li>
+
+                    </ul>
+                    <ul class="footer-contact-mail">
+                        <li class="list-content"><a href="mailto:sales@syncfusion.com">sales@syncfusion.com</a></li>
+                    </ul>
+                    <ul id="footer-icon">
+
+                        <li>
+                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_facebook" target="_blank" href="https://www.facebook.com/Syncfusion">
+                                <i class="footer-social-icon socicon-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_twitter" target="_blank" href="https://twitter.com/Syncfusion">
+                                <i class="footer-social-icon socicon-twitter"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_linkedin" target="_blank" href="https://www.linkedin.com/company/syncfusion?trk=top_nav_home">
+                                <i class="footer-social-icon socicon-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_google" target="_blank" href="https://google.com/+SyncfusionIncMorrisville">
+                                <i class="footer-social-icon socicon-google"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" class="social-icon footerSpriteAll" id="footer_icon_youtube" target="_blank" href="https://www.youtube.com/syncfusioninc">
+                                <i class="footer-social-icon socicon-youtube"></i>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <div class="copyright">
+                        <div class="link">
+                            <a class="social-link" href="/privacy">Privacy Policy</a> |
+                            <a class="social-link" href="/cookie-policy">Cookie Policy</a> |
+                            <a class="social-link" href="/terms-of-use">Terms of Use</a>
+
+                        </div>
+
+                        <div id="copyright">
+                            <a class="social-link" href="/copyright">Copyright © 2001 - 2018 Syncfusion Inc. All Rights Reserved</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="IE-notifiyPopup" id="upgradeIE">
+        <div class="container popuptext">
+            <div>
+                <p>
+                    <span id="warningicon">
+                        <img src="//cdn.syncfusion.com/content/images/HomePage-new/optimizedImages/warning.png" alt="Warning" />
+                    </span>You are using an outdated version of Internet Explorer that may not display all features of this and other websites. Upgrade to Internet Explorer 8 or newer for a better experience.<a class="closepopup" href="#"><img src="//cdn.syncfusion.com/content/images/HomePage-new/optimizedImages/close.png" alt="Close" /></a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var User_Ip = '@(string.IsNullOrWhiteSpace(Request.UserHostAddress) ? string.Empty : Request.UserHostAddress)';
+
+    </script>
+
+    <script src="https://cdn.syncfusion.com/scripts/jquery/Integrity/jquery.all.new.min.js?v1"></script>
+
+    <script src="https://cdn.syncfusion.com/scripts/components/essentialjs/Integrity/ej.dialog.all_15.min.js"></script>
+
+    <script src="https://cdn.syncfusion.com/scripts/bootstrap/Integrity/bootstrap3.7.1.min.js"></script>
+
+    @Scripts.RenderFormat("<script src=\"{0}\"></script>", "~/bundles/scripts/bootstraplayoutjs")
+
+    <script src="https://cdn.syncfusion.com/scripts/jquery/Integrity/MicrosoftMvcAjax.js" defer></script>
+
+    @Scripts.RenderFormat("<script src=\"{0}\" defer></script>", "~/bundles/scripts/feedbackjs")
+
+    <script>
+        //$(document).ready(function () {
+        //        if ($.session.get("IsShowNotifcation") != "false") {
+        //            $("#maintenance_popup").slideDown("400");
+        //        }
+        //    });
+    </script>
+
+
+
+    <script>
+        $(window).resize(function () {
+            if ($("#CookieNotification").length != 0) {
+                $("#footer-bottom").css("padding-bottom", document.getElementById('CookieNotification').offsetHeight);
+            }
+        });
+        $(document).ready(function () {
+            //if ($.session.get("IsShowNotifcation") == "false") {
+            //    $("#cookie-message").css({ "display": "none" });
+            //}
+            $("#cookie-message").css({
+                "color": "#E5E5E5", "background-color": "#5A5B5B", "padding": "7px 0px 7px 0px"
+
+            });
+
+            if ($("#CookieNotification").length != 0) {
+                $("#footer-bottom").css("padding-bottom", document.getElementById('CookieNotification').offsetHeight);
+            }
+
+            var deviceWidth = viewport().width;
+            $(".message").css({ "font-size": "14px", "padding": "0px 0px 0px 30px" });
+            $(".message .learn_more").css({ "text-decoration": "none" });
+            $("#close_icon").css({ "float": "right", "cursor": "pointer", "margin-top": "-1px", "margin-left": "0px" });
+            $("#close_maintenance").css({ "cursor": "pointer", "margin-top": "-1px", "margin-left": "4px" });
+            $(".closeButton").css({ "margin-left": "-19px", "margin-top": "5px" });
+            $("#cookie-message a").css({ "color": "#09b1cf" });
+            if (deviceWidth >= 768 && deviceWidth <= 1279) {
+                $(".message").css({ "font-size": "12px", "padding": "2px 0px 0px 18px" });
+                $(".closeButton").css({ "margin-left": "0px", "margin-top": "5px" });
+            }
+            if (deviceWidth >= 320 && deviceWidth <= 767) {
+
+                $(".message").css({ "font-size": "12px", "padding": "0px 0px 0px 20px" });
+                $(".closeButton").css({ "margin-left": "0px", "margin-top": "2px" });
+                $("#close_icon").css({ "margin-top": "1px" });
+                $("#close_maintenance").css({ "margin-top": "1px" });
+            }
+            else if (deviceWidth < 320) {
+
+                $(".message").css({ "font-size": "12px", "padding": "0px 0px 0px 15px" });
+                $(".closeButton").css({ "margin-left": "0px", "margin-top": "2px" });
+            }
+            //if ($.session.get("IsShowNotifcation") == null) {
+            //    $.session.set("IsShowNotifcation", "true");
+            //}
+
+            var deviceWidth = viewport().width;
+            $(".error-message").css({ "font-size": "14px", "text-align": "center", "padding": "0px" });
+            $(".maintenance-message").css({ "font-size": "14px", "text-align": "left", "padding": "0px" });
+            $("#close-icon").css({ "float": "right", "cursor": "pointer" });
+            //$(".close-button").css({ "margin-left": "-122px", "margin-top": "-19px" });
+            if (deviceWidth >= 768 && deviceWidth <= 1023) {
+                $(".error-message").css({ "font-size": "12px", "padding": "0px 80px" });
+                $(".maintenance-message").css({ "font-size": "12px", "padding": "0px 80px" });
+                $(".close-button").css({ "margin-left": "-84px", "margin-top": "-16px" });
+            }
+            if (deviceWidth >= 1024 && deviceWidth <= 1279) {
+                $(".error-message").css({ "font-size": "12px", "padding": "0px 190px" });
+                $(".maintenance-message").css({ "font-size": "12px", "padding": "0px 190px" });
+                $(".close-button").css({ "margin-left": "-101px", "margin-top": "-16px" });
+            }
+
+
+            if (deviceWidth <= 480 && deviceWidth <= 767) {
+                $(".error-message").css({ "font-size": "12px", "padding": "0px 40px" });
+                $(".maintenance-message").css({ "font-size": "12px", "padding": "0px 40px" });
+                $(".close-button").css({ "margin-left": "-120px", "margin-top": "-15px" });
+            }
+            if (deviceWidth <= 320 && deviceWidth <= 479) {
+                $(".error-message").css({ "font-size": "12px", "padding": "0px" });
+                $(".maintenance-message").css({ "font-size": "12px", "padding": "0px 40px" });
+                $(".close-button").css({ "margin-left": "-78px", "margin-top": "-23px" });
+            }
+            var msie = /msie/.test(navigator.userAgent.toLowerCase());
+            if (msie) {
+
+                if (navigator.userAgent.indexOf('MSIE') != -1)
+                    var detectIEregexp = /MSIE (\d+\.\d+);/
+                else
+                    var detectIEregexp = /Trident.*rv[ :]*(\d+\.\d+)/
+                if (detectIEregexp.test(navigator.userAgent)) {
+                    var ieversion = new Number(RegExp.$1)
+                    if (navigator.userAgent.indexOf('6.0') != -1) {
+                        if (ieversion == 9)
+                            $("#ie-notification").css("display", "none");
+
+                    }
+                    else if (navigator.userAgent.indexOf('6.2') != -1) {
+                        if (ieversion == 10)
+                            $("#ie-notification").css("display", "none");
+
+                    }
+
+                    else {
+
+                        if (ieversion <= 10)
+
+
+                            $("#ie-notification").css("display", "block");
+                        var deviceWidth = viewport().width;
+
+                        $(".error-message").css({ "font-size": "14px", "padding": "0px 0px 0px 10px" });
+                        $(".maintenance-message").css({ "font-size": "14px", "padding": "0px 0px 0px 10px" });
+                        $("#close-icon").css({ "float": "right", "cursor": "pointer" });
+                        $(".close-button").css({ "margin-left": "-32px", "margin-top": "5px" });
+                        $("#ie-notification").css({
+                            "color": "#8B6D3B", "border": "1px solid #FBF7E3", "background-color": "#FBF7E3",
+                            "border-radius": "3px", "padding": "12px 0px 12px 10px"
+
+                        });
+                        if (deviceWidth >= 768 && deviceWidth <= 1279) {
+                            $(".errormessage").css({ "font-size": "12px", "padding": "0px 0px 0px 18px" });
+                            $(".close-button").css({ "margin-left": "0px", "margin-top": "5px" });
+                        }
+                        if (deviceWidth > 320 && deviceWidth <= 767) {
+                            $(".errormessage").css({ "font-size": "12px", "padding": "0px 0px 0px 20px" });
+                            $(".close-button").css({ "margin-left": "0px", "margin-top": "2px" });
+                        }
+                        else if (deviceWidth <= 320) {
+                            $(".error-message").css({ "font-size": "12px", "padding": "0px 0px 0px 15px" });
+                            $(".maintenance-message").css({ "font-size": "12px", "padding": "0px 0px 0px 15px" });
+                            $(".close-button").css({ "margin-left": "0px", "margin-top": "2px" });
+                        }
+
+                    }
+                }
+            }
+            if ($("#ie-notification").length) {
+                $("#ie-notification").delay(15000).fadeOut(300);
+            }
+            $("#close-icon").click(function () {
+                var myDiv = $("#ie-notification");
+                myDiv.clearQueue();
+                $("#ie-notification").fadeOut(200);
+            });
+            $("#close_icon").click(function () {
+                var myDiv = $("#cookie-message");
+                myDiv.clearQueue();
+                $.session.set("IsShowNotifcation", "false");
+                $("#cookie-message").fadeOut(200);
+            });
+
+
+            // $("#maintenance_popup .close-button").click(function () {
+            //     var myDiv = $("#maintenance_popup");
+            //     myDiv.clearQueue();
+            //     $.session.set("IsShowNotifcation", "false");
+            //     $("#maintenance_popup").slideUp("400");
+            // });
+
+
+            // $("#maintenance_popup .close-button").click(function () {
+            //     document.cookie = "Maintenance=false; expires=Mon, 22 May 2017 12:00:00 UTC";
+            //     var myDiv = $("#maintenance_popup");
+            //     myDiv.clearQueue();
+            //     $("#maintenance_popup").slideUp("400");
+            // });
+
+            setTimeout(function () {
+                if ($("#webinar_popup_temp").length > 0) {
+                    $("#webinar_popup_temp").slideDown(600);
+                }
+            }, 5000);
+            setTimeout(function () {
+                if ($("#EbookSpecialOffer").length > 0) {
+                    $("#EbookSpecialOffer").slideDown(600);
+                }
+            }, 5000);
+
+            setTimeout(function () {
+                if ($("#MetroSpecialOffer").length > 0) {
+                    $("#MetroSpecialOffer").slideDown(600);
+                }
+            }, 5000);
+
+            setTimeout(function () {
+                $(".webinar_popup_close").click(function () {
+                    document.cookie = "WebinarNotification=false; expires=Mon, 26 November 2018 16:00:00 UTC; domain=; path=/";
+                    var myDiv = $("#webinar_popup_temp");
+                    myDiv.clearQueue();
+                    $("#webinar_popup_temp").slideUp(600);
+                });
+            }, 3000);
+
+            setTimeout(function () {
+                $("#cookiesubs").click(function () {
+                    document.cookie = 'CookieNotification=; Path=/; Expires=Thu, 08 Nov 2018 00:00:01 UTC;';
+                    document.cookie = "CookieNotification_v1=false; Expires=Thu, 17 May 2020 4:00:00 UTC; domain=; path=/";
+                    $("#CookieNotification").delay(5000).hide();
+                    $("#footer-bottom").css("padding-bottom", "0px");
+                    $.ajax({
+                        url: '/account/LogCookieConsent',
+                        type: 'POST',
+                        datatype: "json",
+                    });
+                });
+            }, 5000);
+
+            window.setInterval(function () {
+                var current = document.getElementById("getservertime").innerHTML;
+                var expiry = "11/26/2018 11:59:00 PM";
+                if (new Date(current) > new Date(expiry)) {
+                    $("#webinar_popup_temp").hide();
+                }
+            }, 1000);
+
+            $(document).on("submit", "#MetroSpecialOfferForm", function () {
+                document.cookie = "MetroSpecialOffer=false; expires=@(DateTime.Now.AddDays(10).ToString()); domain=; path=/";
+                var myDiv = $("#MetroSpecialOffer");
+                myDiv.clearQueue();
+                $("#MetroSpecialOffer").slideUp(600);
+            });
+
+            setTimeout(function () {
+                $(".MetroSpecialOfferClose").click(function () {
+                    var myDiv = $("#MetroSpecialOffer");
+                    myDiv.clearQueue();
+                    $("#MetroSpecialOffer").slideUp(600);
+                });
+            }, 5000);
+
+			setTimeout(function () {
+                $(".policy-close-icon, #privacypolicy_popup .learn_more").click(function () {
+                    document.cookie = "PrivacyPolicy=false; domain=; path=/";
+                    var myDiv = $("#privacypolicy_popup");
+                    myDiv.clearQueue();
+                    $("#privacypolicy_popup").slideUp(600);
+                });
+            }, 5000);
+
+            $('a').each(function () {
+                var a = new RegExp('/' + window.location.host + '/');
+                if (!a.test(this.href)) {
+                    $(this).click(function (event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        window.open(this.href, '_blank');
+                    });
+                }
+            });
+
+            // for sign up form learn more.
+            $('[data-toggle="popover"]').popover({ html: true, container: 'body' });
+			$('[data-toggle="popover"]').click(function (e) {
+                e.preventDefault();
+			});
+			$('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+
+                !function (o, n) {
+                    function i(o) { return function () { return threads.push({ m: o, args: Array.prototype.slice.call(arguments) }), threads } } var threads = o.threads = o.threads || []; if (!threads.initialize) {
+                        if (threads.invoked) return void (o.console && console.error && console.error("threads snippet included twice.")); threads.invoked = !0; for (var c = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "group", "track", "ready", "alias", "page", "once", "off", "on"], p = 0; p < c.length; p++) { var l = c[p]; threads[l] = i(l) }
+                        threads.load = function (o) { var i = n.createElement("script"), c = "https:" === n.location.protocol ? "https://" : "http://"; i.type = "text/javascript", i.async = !0, i.src = c + "cdn.threads.io/analytics/" + o + "/threads.min.js"; var p = n.getElementsByTagName("script")[0]; p.parentNode.insertBefore(i, p) }, threads.SNIPPET_VERSION = "1.1.0",
+                        threads.load("VrK7ca"),
+                        threads.page()
+                    }
+                }(window, document);
+
+
+            });
+        </script>*@
+
+    @RenderSection("ScriptSection", required: false)
+    <script src="https://cdn.syncfusion.com/scripts/jquery/Integrity/jquery.sessionall.min.js" defer></script>
+
+
+
+
+    @*To hide and show the sway chat for licensed users*@
+
+
+
+
+
+</body>
+</html>
