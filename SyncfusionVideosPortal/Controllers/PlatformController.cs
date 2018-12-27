@@ -19,7 +19,9 @@
         public ActionResult PlatformVideos()
         {
             PlatformModel platform = new PlatformModel();
-            return View();
+            platform.PlatformList = PlatformModel.getPlatformList();
+            platform.VideosDetails = PlatformModel.GetPlatformVideoList();
+            return View(platform);
         }
     }
 }

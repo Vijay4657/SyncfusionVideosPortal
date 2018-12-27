@@ -68,16 +68,26 @@
         public string ThumbNailLink;
 
         /// <summary>
+        /// Property for Platform's list
+        /// </summary>
+        public List<Hackathon_Platform> PlatformList;
+
+        /// <summary>
+        /// Property for Video's list
+        /// </summary>
+        public List<Hackathon_Videos> VideosDetails;
+
+        /// <summary>
         /// Method to get the platform List
         /// </summary>
         /// <returns>returns the platform List</returns>
-        public static List<Hackathon_Platform> GetPlatformVideoList()
+        public static List<Hackathon_Videos> GetPlatformVideoList()
         {
-            List<Hackathon_Platform> platformVideosList = new List<Hackathon_Platform>();
+            List<Hackathon_Videos> platformVideosList = new List<Hackathon_Videos>();
             try
             {
                 var entity = new devsyncdbEntities();
-                platformVideosList = (from platform in entity.Hackathon_Platform
+                platformVideosList = (from platform in entity.Hackathon_Videos
                                       where platform.IsActive
                                       select platform).ToList();
             }
@@ -87,6 +97,24 @@
             }
 
             return platformVideosList;
+        }
+
+        public static List<Hackathon_Platform> getPlatformList()
+        {
+            List<Hackathon_Platform> platformList = new List<Hackathon_Platform>();
+            try
+            {
+                var entity = new devsyncdbEntities();
+                platformList = (from platform in entity.Hackathon_Platform
+                                      where platform.IsActive
+                                      select platform).ToList();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return platformList;
         }
 
         /// <summary>
