@@ -15,6 +15,12 @@ namespace SyncfusionVideosPortal
 
             routes.MapRoute(
                 name: "PlatformPage",
+                url: "videos/upload",
+                defaults: new { controller = "Upload", action = "Upload" }
+            );
+
+            routes.MapRoute(
+                name: "PlatformPage",
                 url: "videos/{platform}",
                 defaults: new { controller = "Products", action = "PlatformVideos" }
             );
