@@ -216,62 +216,11 @@
                 padding-bottom: 50px;
             }
             </style>*@
-        <div id="CookieNotification">
-            <div class="container">
-                <div class="row" style="color:#000000;font-size:13px;padding:0px 50px 0px 30px">
-                    <div class="col-lg-10 col-md-9 col-sm-10 col-xs-12 h6 vcenter" style="margin-bottom:0px;font-size:13px;line-height: 1.5em;">
-                        We use cookies to give you the best experience on our website. If you continue to browse, then you agree to our <a href="/privacy" style="text-decoration:underline;" class="">privacy policy</a> and <a href="/cookie-policy" style="text-decoration:underline;">cookie policy</a>. (Last updated on : November 16, 2018).
-                    </div>
-                    <div class="col-lg-1 col-md-2 col-sm-1 col-xs-12 vcenter agreebutton">
-                        <button id="cookiesubs" type="button" class="btn  btn--stack  btn--primary" style="color:white; display: inline-block;font-size:13px;padding: 0px 25px;border-radius: 3px;">
-                            <span class="btn--text h6" style="font-size:13px">OK</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     }
-    <div id="ie-notification" style="display:none">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-9 error-message">
-                    Microsoft has ended support for older versions of IE. For the best experience, upgrade to the latest version of IE, or view this page in another browser.
-                </div>
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 close-button">
-                    <img id="close-icon" src="//cdn.syncfusion.com/content/images/common/close-icon-image.png" alt="close icon" />
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
-    @if (Request.Cookies["WebinarNotification"] == null && !Request.Url.AbsolutePath.Contains("/ebooks/") && !Request.Url.AbsolutePath.Contains("/downloads/metrostudio/confirmation"))
-    {
-        <div id="webinar_popup_temp" style="display: none;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 common-message hidden-xs largeview">
-                        <span id="description-webinar" class="webinarad-banner"><a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="webinar-tag" target="_blank">BLACK FRIDAY SALE: NEW CUSTOMERS - USE CODE <span class="bold-tiny">"BLACKFRIDAY2018"</span> FOR UP TO <span class="bold-tiny">60% OFF</span> 1, 3, AND 5 DEVELOPER PACKS</a></span>
-                        <a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" target="_blank" class="btn webinar-button webinar-tag">BUY NOW</a>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 common-message hidden-lg hidden-md hidden-sm mobileview">
-                        <div id="description"><a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="webinar-tag" target="_blank">BLACK FRIDAY SALE: NEW CUSTOMERS - USE CODE <span class="bold-tiny">"BLACKFRIDAY2018"</span> FOR UP TO <span class="bold-tiny">60% OFF</span> 1, 3, AND 5 DEVELOPER PACKS</a></div>
-                        <div>  <a href="https://www.syncfusion.com/sales/products?utm_source=sync_banner&utm_medium=banner&utm_campaign=eseeblackfridaypromoedmnov18" class="btn webinar-button webinar-tag" target="_blank">BUY NOW</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="webinar_popup_close"></div>
-        </div>
-    }
-    <div class="unconfirmed-error-notification hide">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-11 unconfirmed-error-message small">
-                    Unfortunately, activation email could not send to your email. Please <span class="content-bold resend">try again.</span>
-                </div>
-            </div>
-        </div>
-        <div id="close-icon-not-activated" class="user-not-activated-close activation-unconfirmed-error-notification-close"></div>
-    </div>
+   
     @*@if (Request.Cookies["PrivacyPolicy"] == null)
         {
             <div id="privacypolicy_popup">
