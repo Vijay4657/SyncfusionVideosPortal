@@ -39,6 +39,7 @@
           <Property Name="ThumbnailLink" Type="varchar(max)" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="platformshortname" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId">
           <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
@@ -138,6 +139,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Hackathon_Control" Relationship="Self.FK_Hackathon_Videos_Hackathon_Control_ControlId" FromRole="Hackathon_Videos" ToRole="Hackathon_Control" />
           <NavigationProperty Name="Hackathon_Platform" Relationship="Self.FK_Hackathon_Videos_Hackathon_Platform_PlatformId" FromRole="Hackathon_Videos" ToRole="Hackathon_Platform" />
+          <Property Name="platformshortname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId">
           <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
@@ -221,6 +223,7 @@
           <EntitySetMapping Name="Hackathon_Videos">
             <EntityTypeMapping TypeName="devsyncdbModel.Hackathon_Videos">
               <MappingFragment StoreEntitySet="Hackathon_Videos">
+                <ScalarProperty Name="platformshortname" ColumnName="platformshortname" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="SlugTitle" ColumnName="SlugTitle" />
                 <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />

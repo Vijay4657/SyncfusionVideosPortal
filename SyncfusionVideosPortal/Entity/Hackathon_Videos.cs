@@ -26,6 +26,7 @@ namespace SyncfusionVideosPortal.Entity
         public string ThumbnailLink { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
+        public string platformshortname { get; set; }
     
         public virtual Hackathon_Control Hackathon_Control { get; set; }
         public virtual Hackathon_Platform Hackathon_Platform { get; set; }

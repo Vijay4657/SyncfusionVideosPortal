@@ -3,5 +3,197 @@
     ViewBag.Title = "PlatformVideos";
 }
 
-<h2>PlatformVideos</h2>
+@{
+    Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
+    
+    var currentPlatform = Model.PlatformList.Where(casestudies => casestudies.ShortName == Request.Url.AbsolutePath.Split('/')[2]).FirstOrDefault();
+    var pageTitle = currentPlatform != null ? currentPlatform.PlatformName + " Videos | Syncfusion" : "Videos Portal | Syncfusion";
+    var pageDescription = "Description";
+    var PageHeading = currentPlatform != null ? currentPlatform.PlatformName : "All Platform";
+}
+
+@section StyleSection
+{
+    <link href="~/css/theme.css" rel="stylesheet" />
+    <link href="~/css/CaseStudiesListing.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="~/css/stack-interface.css" rel="stylesheet" />
+
+}
+
+@section TitleSection
+{
+    @pageTitle
+}
+
+@section MetaSection
+{
+    <meta name="description" content="@pageDescription" />
+}
+
+@section MainSection
+{
+    <div class="container case-studies-filter">
+        <div class="row casestudies">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div>
+                    <h1>@PageHeading Videos</h1>
+                </div>
+                <div class="masonry-filter-container row">
+                    <div class="col-md-5 col-sm-6 col-xs-12">
+                        <span class="title-section">Platforms:</span>
+                        <div class="masonry-filter-holder industry_select hide">
+
+                            <select class="industry_select_picker">
+                                <option>Choose Platforms</option>
+                                <option value="all">All Platforms</option>
+                                @foreach (var platform in Model.PlatformList)
+                                {
+                                    if (platform.ShortName != "all")
+                                    {
+                                        <option value="@platform.ShortName">@platform.PlatformName</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-6 col-xs-12 search-filter">
+                        <form id="search-filter">
+
+                            <input type="search" id="search-box" name="searchTerm" placeholder="Type keywords here" />
+                            <span id="filter-search-icon" class="glyphicon glyphicon-search"></span>
+                            <span id="clear-filter" class="glyphicon" style="display:none;"></span>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!--end masonry-->
+
+                <div class="row text-center results-section">
+                    <h2>Showing results for <span></span> in <span id="industry-text"></span> <span>platform</span></h2>
+                    <p class="lead"><span></span> Results Found</p>
+                </div>
+
+
+
+                <section class=" ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="masonry">
+                                <div class="masonry__container masonry--active case-studies-section">
+                                @foreach (var videodetails in Model.VideosDetails)
+                                {
+                                    <div class="col-sm-4 masonry__item case-studies-segments @videodetails.platformshortname">
+                                        <div class="card card-1 boxed boxed--sm boxed--border">
+                                            <div class="card__top">
+                                                <div class="card__avatar">
+                                                    <span>
+                                                        <strong>@videodetails.Title</strong>
+                                                    </span>
+                                                </div>
+                                                <div class="card__meta">
+                                                    <span>@videodetails.VideoId mins</span>
+                                                </div>
+                                            </div>
+                                            <div class="card__body">
+                                                <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
+                                                    <img src="@videodetails.ThumbnailLink" alt="Image" class="border--round">
+                                                </a>
+                                                <p>
+                                                    @(videodetails.Description.Length > 160 ? videodetails.Description.Substring(0, 160).TrimEnd() + "..." : videodetails.Description)
+                                                </p>
+                                            </div>
+                                            <div class="card__bottom">
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <div class="card__action">
+                                                            <a>
+                                                                <i class="material-icons">comment</i>
+                                                                <span>10</span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="card__action">
+                                                            <a>
+                                                                <i class="material-icons">favorite</i>
+                                                                <span>6</span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="card__action">
+                                                            <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
+                                                                <i class="material-icons">share</i>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                </div>
+                                <!--end masonry__container-->
+                            </div>
+                            <!--end masonry-->
+                        </div>
+                        <!--end of row-->
+                    </div>
+                    <!--end of container-->
+                </section>
+
+
+
+
+                @*<div class="case-studies-section">
+                    @foreach (var videos in Model.VideosDetails)
+                    {
+                        //var products = Model.ProductList.Where(product => caseStudies.ProductType.Contains(product.Value)).Select(product => product.Value).ToList();
+
+                        <div class="masonry__item case-studies-segments col-md-4 col-sm-6 @videos.platformshortname">
+                            <div class="feature feature-4 boxed boxed--lg boxed--border">
+                                <div class="case-study-heading-section">
+                                    <a class="h5" href="/videos/@currentPlatform.ShortName/@videos.SlugTitle" title="@videos.Title">@(videos.Title)</a>
+                                </div>
+                                <p>
+                                    @(videos.Description.Length > 160 ? videos.Description.Substring(0, 160).TrimEnd() + "..." : videos.Description)
+                                </p>
+                                <div class="btn btn--primary read-story-btn">
+                                    <a class="btn__text" href="/videos/@currentPlatform.ShortName/@videos.SlugTitle">
+                                        Watch video
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="no-results-message hide">
+                        <p>
+                            No records found.
+                        </p>
+                        <hr />
+                    </div>
+                </div>*@
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var NoOfIndutries = @Model.PlatformList.Count -1;
+        var NoOfTechnologies = @Model.VideosDetails.Count -1;
+    </script>
+    <script src="~/Scripts/isotope.min.js"></script>
+    <script src="~/Scripts/smooth-scroll.min.js"></script>
+    <script src="~/Scripts/bootStrap-Multiselect.js"></script>
+    <script src="~/Scripts/jquery.matchHeight.js"></script>
+    <script src="~/Scripts/CaseStudiesListing.js"></script>
+
+}
 
