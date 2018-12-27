@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatformController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Entity\Hackathon_Control.cs">
       <DependentUpon>SyncfusionVideosPortal.tt</DependentUpon>
     </Compile>
@@ -223,6 +224,8 @@
     <Content Include="Views\Shared\_BootstrapMenu.cshtml" />
     <Content Include="Views\Shared\_BootstrapLayout.cshtml" />
     <Content Include="Views\Platform\PlatformVideos.cshtml" />
+    <Content Include="Views\Upload\Upload.cshtml" />
+    <Content Include="Views\Platform\VideoDetailsPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

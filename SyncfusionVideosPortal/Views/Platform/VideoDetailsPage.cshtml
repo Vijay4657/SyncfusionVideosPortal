@@ -1,0 +1,42 @@
+﻿@model SyncfusionVideosPortal.Entity.Hackathon_Videos
+@{
+    Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
+}
+@section StyleSection
+{
+<link rel="stylesheet" href="https://s.ytimg.com/yts/cssbin/www-player-webp-vflciNpd1.css">
+<link rel="stylesheet" href="https://d3ba5g9yhie26y.cloudfront.net/cache/d904952f3f93b1b22f5a6c2a999bb672a47fd150/css/style.min.css"> 
+}
+
+@section MetaSection
+{
+    <meta name="description" content="Read in-depth examples of how Syncfusion has helped customers achieve their project goals with Essential Studio components and frameworks and enterprise business intelligence solutions." />
+}
+
+@section MainSection
+{
+    <div class="VideoDetailsPage">
+        <div class="container">
+            <div class="row">
+                <h1>Videos</h1><br />
+                <h2>@Model.Title.ToUpper()</h2>
+            </div>
+            <div class="row">
+                <div class="col-18 col--offset-2">
+                    <div class="Embed Embed--16by9 -mb2">
+                        <iframe width="560" height="315" src="@Model.VideoLink" frameborder="0" allowfullscreen="" id="widget2"></iframe>
+                    </div>
+                </div>
+                <div class="col-2 -xl-half -xl-ml4 -xl-mt3 -l-ml0 -l-full">
+                    <div class="Social Social--vertical -xl-ml5 -l-ml0">
+                        <a href="#" class="-i-twitter" onclick="window.open('http://twitter.com/share?url=https://www.progress.com/video/sitefinity-the-premier-enterprise-level-cms', 'Twitter', 'toolbar=no,width=550,height=450'); return false"></a>
+                        <a href="#" class="-i-facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://www.progress.com/video/sitefinity-the-premier-enterprise-level-cms&amp;display=popup&amp;ref=plugin', 'Facebook','toolbar=no,width=550,height=180'); return false"></a>
+                        <a href="#" class="-i-google" onclick="window.open('https://plus.google.com/share?url=https://www.progress.com/video/sitefinity-the-premier-enterprise-level-cms', 'GooglePlus', 'toolbar=no,width=550,height=450'); return false"></a>
+                        <a href="#" class="-i-linkedin" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.progress.com/video/sitefinity-the-premier-enterprise-level-cms&amp;title=sitefinity-the-premier-enterprise-level-cms', 'LinkedIn', 'toolbar=no,width=550,height=450', 'yes', 'center'); return false"></a>
+                        <a href="mailto:?body=https://www.progress.com/video/sitefinity-the-premier-enterprise-level-cms&amp;subject=Sitefinity -- The Premier Enterprise-Level CMS" class="-i-mail"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
