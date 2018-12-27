@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web;
     using SyncfusionVideosPortal.Entity;
+    using System.Text;
 
     /// <summary>
     /// Class for platform model
@@ -75,7 +76,7 @@
             List<Hackathon_Platform> platformVideosList = new List<Hackathon_Platform>();
             try
             {
-                var entity = new Hackathon_Platform();
+                var entity = new devsyncdbEntities();
                 platformVideosList = (from platform in entity.Hackathon_Videos
                                       where platform.IsActive).ToList();
             }
@@ -102,15 +103,175 @@
             bool isSuccess = false;
             try
             {
-                var entity = new Hackathon_Videos();
-
+                var entity = new devsyncdbEntities();
+                string slugTitle = string.Empty;
+                slugTitle = GetSlugTitle(title);
+                Hackathon_Videos videosEntry = new Hackathon_Videos();
+                videosEntry.ControlId = 0;
+                videosEntry.CreatedDate = DateTime.Now;
+                videosEntry.Description = description;
+                videosEntry.IsActive = true;
+                videosEntry.IsFeature = true;
+                videosEntry.IsLatest = IsLatest;
+                videosEntry.PlatformId = GetPlatformId(platform);
+                videosEntry.SlugTitle = slugTitle;
+                videosEntry.ThumbnailLink = thumbnailLink;
+                videosEntry.Title = title;
+                videosEntry.VideoLink = youTubeLink;
+                entity.Hackathon_Videos.Add(videosEntry);
+                entity.SaveChanges();
+                isSuccess = true;
             }
             catch (Exception ex)
             {
 
             }
 
-            return false;
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// Method to get the platform Id
+        /// </summary>
+        /// <param name="platformName">platform name</param>
+        /// <returns>returns the platform Id of the platform</returns>
+        public int GetPlatformId(string platformName)
+        {
+            int platformId = 0;
+            try
+            {
+                var entity = new devsyncdbEntities();
+                platformId = (from platform in entity.Hackathon_Platform
+                              where platform.PlatformName == PlatformName && platform.IsActive
+                              select platform.PlatformId).First();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return platformId;
+        }
+
+        /// <summary>
+        /// Format the title to use in the URL
+        /// </summary>
+        /// <param name="title">article title</param>
+        /// <returns>return slug title</returns>
+        public static string GetSlugTitle(string title)
+        {
+            try
+            {
+                title = string.IsNullOrEmpty(title) ? string.Empty : title.Trim().ToLower();
+                var titleSlug = new StringBuilder();
+                var isPreviousDash = false;
+                foreach (char character in title)
+                {
+                    if (titleSlug.Length > 101)
+                    {
+                        break;
+                    }
+                    else if ((character >= '0' && character <= '9') || (character >= 'a' && character <= 'z'))
+                    {
+                        titleSlug.Append(character);
+                        isPreviousDash = false;
+                    }
+                    else if (character == ' ' || character == ',' || character == '.' || character == '/' || character == '\\' || character == '-' || character == '_' || character == '=' || character == '“' || character == '”')
+                    {
+                        if (!isPreviousDash)
+                        {
+                            titleSlug.Append('-');
+                            isPreviousDash = true;
+                        }
+                    }
+                    else if ((int)character > 128)
+                    {
+                        isPreviousDash = false;
+                        if ("àåáâäãåą".Contains(character))
+                        {
+                            titleSlug.Append('a');
+                        }
+                        else if ("èéêëę".Contains(character))
+                        {
+                            titleSlug.Append('e');
+                        }
+                        else if ("ìíîïı".Contains(character))
+                        {
+                            titleSlug.Append('i');
+                        }
+                        else if ("òóôõöøőð".Contains(character))
+                        {
+                            titleSlug.Append('o');
+                        }
+                        else if ("ùúûüŭů".Contains(character))
+                        {
+                            titleSlug.Append('u');
+                        }
+                        else if ("çćčĉ".Contains(character))
+                        {
+                            titleSlug.Append('c');
+                        }
+                        else if ("żźž".Contains(character))
+                        {
+                            titleSlug.Append('z');
+                        }
+                        else if ("śşšŝ".Contains(character))
+                        {
+                            titleSlug.Append('s');
+                        }
+                        else if ("ñń".Contains(character))
+                        {
+                            titleSlug.Append('n');
+                        }
+                        else if ("ýÿ".Contains(character))
+                        {
+                            titleSlug.Append('y');
+                        }
+                        else if ("ğĝ".Contains(character))
+                        {
+                            titleSlug.Append('g');
+                        }
+                        else if (character == 'ř')
+                        {
+                            titleSlug.Append('r');
+                        }
+                        else if (character == 'ł')
+                        {
+                            titleSlug.Append('l');
+                        }
+                        else if (character == 'đ')
+                        {
+                            titleSlug.Append('d');
+                        }
+                        else if (character == 'ß')
+                        {
+                            titleSlug.Append("ss");
+                        }
+                        else if (character == 'Þ')
+                        {
+                            titleSlug.Append("th");
+                        }
+                        else if (character == 'ĥ')
+                        {
+                            titleSlug.Append('h');
+                        }
+                        else if (character == 'ĵ')
+                        {
+                            titleSlug.Append('j');
+                        }
+                        else
+                        {
+                            titleSlug.Append(string.Empty);
+                        }
+                    }
+                }
+
+                return titleSlug.Length > 101 ? titleSlug.ToString().Substring(0, titleSlug.ToString().LastIndexOf('-')) : titleSlug.ToString().TrimEnd('-');
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
         }
     }
 }
