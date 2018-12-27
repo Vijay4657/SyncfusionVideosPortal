@@ -77,8 +77,9 @@
             try
             {
                 var entity = new devsyncdbEntities();
-                platformVideosList = (from platform in entity.Hackathon_Videos
-                                      where platform.IsActive).ToList();
+                platformVideosList = (from platform in entity.Hackathon_Platform
+                                      where platform.IsActive
+                                      select platform).ToList();
             }
             catch (Exception ex)
             {
@@ -151,6 +152,56 @@
             }
 
             return platformId;
+        }
+
+        /// <summary>
+        /// Method to get the platform Id
+        /// </summary>
+        /// <param name="platformName">platform name</param>
+        /// <returns>returns the platform Id from the platform short name</returns>
+        public int GetPlatformIdFromShortName(string platformShortName)
+        {
+            int platformId = 0;
+            try
+            {
+                var entity = new devsyncdbEntities();
+                platformId = (from platform in entity.Hackathon_Platform
+                              where platform.ShortName == platformShortName && platform.IsActive
+                              select platform.PlatformId).First();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return platformId;
+        }
+
+        /// <summary>
+        /// Method to get the video details
+        /// </summary>
+        /// <param name="platformShortName">platform short name</param>
+        /// <param name="slugTitle">slug title</param>
+        /// <returns>returns the video details based on the shortname and title</returns>
+        public Hackathon_Videos GetVideoDetails(string platformShortName, string slugTitle)
+        {
+            Hackathon_Videos videoDetails = new Hackathon_Videos();
+            int platformId = GetPlatformIdFromShortName(platformShortName);
+            try
+            {
+                using (var entity = new devsyncdbEntities())
+                {
+                    videoDetails = (from video in entity.Hackathon_Videos
+                                    where video.PlatformId == platformId && video.SlugTitle == slugTitle && video.IsActive
+                                    select video).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return videoDetails;
         }
 
         /// <summary>
