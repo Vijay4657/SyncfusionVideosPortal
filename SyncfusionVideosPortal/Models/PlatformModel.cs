@@ -87,9 +87,10 @@
             try
             {
                 var entity = new devsyncdbEntities();
-                platformVideosList = (from platform in entity.Hackathon_Videos
-                                      where platform.IsActive
-                                      select platform).ToList();
+                platformVideosList = (from video in entity.Hackathon_Videos
+                                      where video.IsActive
+                                      orderby video.CreatedDate descending
+                                      select video).ToList();
             }
             catch (Exception ex)
             {

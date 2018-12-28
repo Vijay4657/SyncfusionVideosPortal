@@ -229,6 +229,7 @@
     <Content Include="Views\Platform\PlatformVideos.cshtml" />
     <Content Include="Views\Upload\Upload.cshtml" />
     <Content Include="Views\Platform\VideoDetailsPage.cshtml" />
+    <Content Include="Views\Shared\_recendvideoslist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

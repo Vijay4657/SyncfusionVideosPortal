@@ -610,6 +610,7 @@ function UpdateURLForFilterChange() {
     if (industryFilter != null && industryFilter != "") {
 
         $("h1").text($(".industry_select_picker option:selected").text() + " Videos");
+        $(".logo-platfrom").text("| " + $(".industry_select_picker option:selected").text())
 
         if (searchTerm != null && searchTerm != "") {
 

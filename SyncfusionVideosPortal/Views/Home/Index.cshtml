@@ -35,6 +35,11 @@
     <script src="js/spectragram.min.js"></script>
     <script src="js/smooth-scroll.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="~/Scripts/jquery.matchHeight.js"></script>
+    <script>
+        $(".card__top").matchHeight();
+        $(".card__body").matchHeight();
+    </script>
 }
 @section MetaSection
 {
@@ -106,7 +111,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h2 style="margin-bottom: 10px;margin-top: 15px;font-size: 3em;font-weight: 400;">Videos Portal</h2>
-                    <h4>Get up and running faster with free online videos</h4>
+                    <h4>Learn more about our company, products, events etc</h4>
                 </div>
             </div>
         </div>
@@ -120,6 +125,7 @@
 
         </div>*@
     <div id="platform-details" class="container body-content">
+        <h1>Watch our Videos based on Products</h1>
         <div class="bodyContent">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-mobile-view">
                 <div class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-6 col-xs-12 no-padding">
@@ -265,6 +271,10 @@
         <div>
             <div id="addQuestionDialog"></div>
         </div>
+    </div>
+    <div id="top-videos">
+            <h4>Latest Videos</h4>
+            @Html.Partial("_recendvideoslist")
     </div>
 
 
