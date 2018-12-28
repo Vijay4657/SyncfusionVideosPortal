@@ -5,13 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="devsyncdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'devsyncdb.dbo.Hackathon_Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Hackathon_Comments">
           <Key>
             <PropertyRef Name="CommentId" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="IsActive" />
           </Key>
           <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VideoId" Type="int" />
@@ -107,18 +103,10 @@ warning 6002: The table/view 'devsyncdb.dbo.Hackathon_Comments' does not have a 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="devsyncdbModelStoreContainer">
+          <EntitySet Name="Hackathon_Comments" EntityType="Self.Hackathon_Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hackathon_Control" EntityType="Self.Hackathon_Control" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hackathon_Platform" EntityType="Self.Hackathon_Platform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hackathon_Videos" EntityType="Self.Hackathon_Videos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hackathon_Comments" EntityType="Self.Hackathon_Comments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Hackathon_Comments].[CommentId] AS [CommentId], 
-    [Hackathon_Comments].[VideoId] AS [VideoId], 
-    [Hackathon_Comments].[Comment] AS [Comment], 
-    [Hackathon_Comments].[CreatedDate] AS [CreatedDate], 
-    [Hackathon_Comments].[IsActive] AS [IsActive]
-    FROM [dbo].[Hackathon_Comments] AS [Hackathon_Comments]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Hackathon__Video__5424E8BF" Association="Self.FK__Hackathon__Video__5424E8BF">
             <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
             <End Role="Hackathon_Comments" EntitySet="Hackathon_Comments" />
@@ -247,8 +235,6 @@ warning 6002: The table/view 'devsyncdb.dbo.Hackathon_Comments' does not have a 
         <EntityType Name="Hackathon_Comments">
           <Key>
             <PropertyRef Name="CommentId" />
-            <PropertyRef Name="CreatedDate" />
-            <PropertyRef Name="IsActive" />
           </Key>
           <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VideoId" Type="Int32" />

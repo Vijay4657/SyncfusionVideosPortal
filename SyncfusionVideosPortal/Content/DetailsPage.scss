@@ -11,6 +11,7 @@
 }
 
 .VideoDetailsPage {
+    margin-bottom: 8em;
     .share {
         margin-top: 50px;
         #facebooklink, #twitterlink {
@@ -85,3 +86,51 @@
     }
 
 }
+
+
+
+#video-comments {
+
+    h5 {
+        color: rgb(10, 10, 10);
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    #comment-area {
+        margin-bottom: 2em;
+    }
+
+    #comment-submit {
+        max-width: 200px;
+        margin-top: 15px;
+    }
+
+    #all-comment {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        .comment-section {
+            
+            padding-top: 2em;
+            img {
+                top: 0;
+                display: inline-block;
+                position: relative;
+                margin-top: -20px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+            .comment-content {
+                display: inline-block;
+                .details {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    
+    
+    }
+}
+
+
