@@ -3,11 +3,13 @@
     Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
     var DisplayName = ViewBag.PlatformName;
     var tagsList = string.IsNullOrEmpty(Model.Tags) ? new List<string>() :  Model.Tags.Split(',').ToList();
+    int videoId = Model.VideoId;
 }
 @section StyleSection
 { <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/DetailsPage.css" rel="stylesheet" />
     <link href="~/Content/Home.css" rel="stylesheet" />
+<link href="~/css/socicon.css" rel="stylesheet" type="text/css" media="all" /> 
 }
 @section MetaSection
 {
@@ -86,7 +88,7 @@
                         <div id="video-oprations">
                             <div class="view-count">@(Model.ViewCount + " ") <span>views</span></div>
                             <div class="oprations">
-                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span>@Model.LikeCount</span>
+                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@Model.LikeCount</span>
                             </div>
                             
                         </div>
@@ -116,6 +118,23 @@
 
         $(document).ready(function () {
             $("#video-player-iframe").prop("width", document.getElementById("video-player-iframe").offsetHeight * 16 / 9);
+
+            $("#like-video").click(function () {
+                likeVideoFunction();
+            });
+
+            function likeVideoFunction() {
+                $.ajax({
+                    type: 'POST',
+                    url: "/Platform/AddLikeCount",
+                    data: { "videoId": @videoId },
+                    success: function (data) {
+                        $("#like-video").addClass("liked");
+                        $("#currentCount").text(data.count);
+                    }
+                });
+            }
+            
         });
 
 

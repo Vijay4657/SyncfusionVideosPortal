@@ -192,9 +192,10 @@
         /// Method to Update the like count of the 
         /// </summary>
         /// <param name="videoId">Video Id</param>
-        public bool AddLikeCount(int videoId)
+        /// <returns>Returns the new like count</returns>
+        public int AddLikeCount(int videoId)
         {
-            bool isUpdated = false;
+            int newCount = 0;
             try
             {
                 int existingCount;
@@ -206,10 +207,9 @@
                     if (videoDetail != null)
                     {
                         existingCount = (int)videoDetail.LikeCount;
-                        int newCount = existingCount + 1;
+                        newCount = existingCount + 1;
                         videoDetail.LikeCount = newCount;
                         entity.SaveChanges();
-                        isUpdated = true;
                     }
                 }
             }
@@ -218,7 +218,7 @@
 
             }
 
-            return isUpdated;
+            return newCount;
         }
 
         /// <summary>
