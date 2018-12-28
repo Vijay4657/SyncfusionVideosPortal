@@ -18,6 +18,8 @@
     <link href="~/css/PlatformVideosListing.css" rel="stylesheet" />
     <link href="~/css/bootstrap-multiselect.css" rel="stylesheet" />
     <link href="~/css/stack-interface.css" rel="stylesheet" />
+    <link href="~/Content/Home.css" rel="stylesheet" />
+    <link href="~/Content/DetailsPage.css" rel="stylesheet" />
 
 }
 
@@ -33,12 +35,51 @@
 
 @section MainSection
 {
+<nav id="menu2" class="home bar bar-2 hidden-xs bar--absolute bar--transparent" style="position: relative;background-color: #7a7adb;background-image: linear-gradient(315deg, #0074e7 0%, #170e13 74%);margin-bottom: 2em;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 text-left-sm hidden-xs">
+                <div class="bar__module video-logo">
+                    <p>
+                        <a class="videos-logo" href="/">
+                            <img class="logo logo-light" alt="logo" src="/img/logo-videos.png">
+                        </a>
+                        <a class="heading-menu" href="/">
+                            Videos Portal
+                        </a>
+                        <span class="logo-platfrom"> | @PageHeading</span>
+                    </p>
+                </div>
+                <!--end module-->
+            </div>
+            <div class="col-md-2 col-md-pull-2">
+                <!--end module-->
+            </div>
+            <div class="col-md-5 text-right text-left-xs text-left-sm">
+                <div class="bar__module">
+                    <a class="btn btn--sm type--uppercase" href="#">
+                        <span class="btn__text">
+                            Upload
+                        </span>
+                    </a>
+
+                </div>
+                <!--end module-->
+            </div>
+            <div style="text-align: center;padding: 2em;">
+                <h1 style="color: #fff;">@PageHeading Videos</h1>
+            </div>
+        </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</nav>
     <div class="container case-studies-filter">
         <div class="row casestudies">
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div>
+                @*<div>
                     <h1>@PageHeading Videos</h1>
-                </div>
+                </div>*@
                 <div class="masonry-filter-container row">
                     <div class="col-md-5 col-sm-6 col-xs-12">
                         <span class="title-section">Platforms:</span>
@@ -89,9 +130,9 @@
                                         <div class="card card-1 boxed boxed--sm boxed--border">
                                             <div class="card__top">
                                                 <div class="card__avatar">
-                                                    <span>
+                                                    <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
                                                         <strong>@videodetails.Title</strong>
-                                                    </span>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="card__body">
@@ -106,24 +147,25 @@
                                                 <ul class="list-inline">
                                                     <li>
                                                         <div class="card__action">
-                                                            <a>
+                                                            <a style="cursor: default;">
                                                                 <i class="material-icons">comment</i>
-                                                                <span>10</span>
+                                                                <span>@videodetails.Hackathon_Comments.Count()</span>
                                                             </a>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="card__action">
-                                                            <a>
+                                                            <a style="cursor: default;">
                                                                 <i class="material-icons">favorite</i>
-                                                                <span>6</span>
+                                                                <span>@videodetails.LikeCount</span>
                                                             </a>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="card__action">
-                                                            <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
-                                                                <i class="material-icons">share</i>
+                                                            <a style="cursor: default;">
+                                                                <i class="material-icons">visibility</i>
+                                                                <span>@videodetails.ViewCount</span>
                                                             </a>
                                                         </div>
                                                     </li>
@@ -133,13 +175,9 @@
                                     </div>
                                 }
                                 </div>
-                                <!--end masonry__container-->
                             </div>
-                            <!--end masonry-->
                         </div>
-                        <!--end of row-->
                     </div>
-                    <!--end of container-->
                 </section>
 
 

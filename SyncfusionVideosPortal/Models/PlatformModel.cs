@@ -87,9 +87,10 @@
             try
             {
                 var entity = new devsyncdbEntities();
-                platformVideosList = (from platform in entity.Hackathon_Videos
-                                      where platform.IsActive
-                                      select platform).ToList();
+                platformVideosList = (from video in entity.Hackathon_Videos
+                                      where video.IsActive
+                                      orderby video.CreatedDate descending
+                                      select video).ToList();
             }
             catch (Exception ex)
             {
@@ -194,9 +195,10 @@
         /// Method to Update the like count of the 
         /// </summary>
         /// <param name="videoId">Video Id</param>
-        public bool AddLikeCount(int videoId)
+        /// <returns>Returns the new like count</returns>
+        public int AddLikeCount(int videoId)
         {
-            bool isUpdated = false;
+            int newCount = 0;
             try
             {
                 int existingCount;
@@ -208,10 +210,9 @@
                     if (videoDetail != null)
                     {
                         existingCount = (int)videoDetail.LikeCount;
-                        int newCount = existingCount + 1;
+                        newCount = existingCount + 1;
                         videoDetail.LikeCount = newCount;
                         entity.SaveChanges();
-                        isUpdated = true;
                     }
                 }
             }
@@ -220,7 +221,7 @@
 
             }
 
-            return isUpdated;
+            return newCount;
         }
 
         /// <summary>
@@ -280,6 +281,31 @@
             }
 
             return isSuccess;
+        }
+
+        /// <summary>
+        /// Method to get the platform display name
+        /// </summary>
+        /// <param name="shortName">short Name</param>
+        /// <returns>returns the platform display name from short name</returns>
+        public string GetPlatformDisplayName(string shortName)
+        {
+            string platformName = string.Empty;
+            try
+            {
+                using (var entity = new devsyncdbEntities())
+                {
+                    platformName = (from platform in entity.Hackathon_Platform
+                                    where platform.ShortName == shortName && platform.IsActive
+                                    select platform.PlatformName).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return platformName;
         }
 
         /// <summary>

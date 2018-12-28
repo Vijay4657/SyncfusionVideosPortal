@@ -34,6 +34,7 @@
             PlatformModel platformModel = new PlatformModel();
             Hackathon_Videos videoDetails = platformModel.GetVideoDetails(platform, slugTitle);
             ViewBag.CommentDetails = platformModel.GetCommentDetails(platform, slugTitle);
+            ViewBag.PlatformName = platformModel.GetPlatformDisplayName(platform);
             return View(videoDetails);
         }
 
@@ -45,8 +46,8 @@
         public ActionResult AddLikeCount(int videoId)
         {
             PlatformModel platformModel = new PlatformModel();
-            bool isSuccess = platformModel.AddLikeCount(videoId);
-            return Json(new { result = isSuccess }, JsonRequestBehavior.AllowGet);
+            int likeCount = platformModel.AddLikeCount(videoId);
+            return Json(new { result = likeCount != 0 ? true : false, count = likeCount }, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

@@ -42,3 +42,42 @@ body #main-heading h2 {
 body #platform-details {
   margin-top: 2em !important;
   margin-bottom: 2em !important; }
+
+
+.card-1 .card__body img{
+    box-shadow: 0 1px 15px -4px rgba(0,0,0,.3);
+    width:100%;
+}
+.card-1 .card__body img:hover{
+    box-shadow: 0 12px 50px -15px rgba(0,0,0,.5);
+    transform: translate3d(0,-2px,0);
+    -webkit-transform: translate3d(0,-2px,0);
+}
+.card-1 .card__body p{
+    font-size: 14px;
+}
+.card__action a:not(:hover) {
+    opacity: 1;
+}
+.card__action a i {
+    color: #666666;
+}
+.card__avatar strong{
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+}
+h1{
+    text-align: center;
+    font-weight: 400;
+    font-family: "open sans";
+    font-size: 32px;
+}
+h4{
+    font-family: "open sans";
+    font-size: 32px;
+}
+#top-videos{
+    padding: 4em;
+    background-color: #f7f7f7;
+}

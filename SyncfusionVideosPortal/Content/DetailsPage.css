@@ -4,3 +4,85 @@
   font-size: 20px;
   font-weight: 400;
   font-family: cursive; }
+
+.VideoDetailsPage {
+  margin-bottom: 8em; }
+  .VideoDetailsPage .share {
+    margin-top: 50px; }
+    .VideoDetailsPage .share #facebooklink, .VideoDetailsPage .share #twitterlink {
+      margin-bottom: 1em; }
+      .VideoDetailsPage .share #facebooklink a, .VideoDetailsPage .share #twitterlink a {
+        width: 215px; }
+
+#video-player {
+  padding: 0;
+  margin-top: 50px; }
+
+#video-details {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  #video-details h3 {
+    font-weight: 500;
+    margin-bottom: 5px; }
+  #video-details #video-oprations .view-count {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500; }
+    #video-details #video-oprations .view-count span {
+      font-size: 14px;
+      font-weight: 500; }
+  #video-details #video-oprations .oprations {
+    display: inline-block; }
+    #video-details #video-oprations .oprations span {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 500; }
+    #video-details #video-oprations .oprations #like-video {
+      font-size: 20px;
+      margin: auto 1em;
+      cursor: pointer;
+      top: 3px;
+      cursor: pointer;
+      margin-right: 5px; }
+      #video-details #video-oprations .oprations #like-video:hover {
+        color: #0033cc; }
+    #video-details #video-oprations .oprations .liked {
+      color: #0033cc; }
+  #video-details #tags p a {
+    color: #065fd4;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    padding-right: 5px; }
+
+#video-comments h5 {
+  color: #0a0a0a;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+#video-comments #comment-area {
+  margin-bottom: 2em; }
+
+#video-comments #comment-submit {
+  max-width: 200px;
+  margin-top: 15px; }
+
+#video-comments #all-comment {
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  #video-comments #all-comment .comment-section {
+    padding-top: 2em; }
+    #video-comments #all-comment .comment-section img {
+      top: 0;
+      display: inline-block;
+      position: relative;
+      margin-top: -20px;
+      border-radius: 50%;
+      margin-right: 15px; }
+    #video-comments #all-comment .comment-section .comment-content {
+      display: inline-block; }
+      #video-comments #all-comment .comment-section .comment-content .details {
+        margin-bottom: 10px; }
