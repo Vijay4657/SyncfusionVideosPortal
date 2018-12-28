@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
     var DisplayName = ViewBag.PlatformName;
+    var tagsList = string.IsNullOrEmpty(Model.Tags) ? new List<string>() :  Model.Tags.Split(',').ToList();
 }
 @section StyleSection
 { <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
@@ -30,7 +31,7 @@
                             <a class="heading-menu" href="/">
                                 Videos Portal
                             </a>
-                            | 
+                            |
                             <a class="heading-menu" href="/videos/@Model.platformshortname">
                                 @DisplayName
                             </a>
@@ -61,15 +62,46 @@
 
     <div class="VideoDetailsPage">
         <div class="container">
+            @*<div class="row">
+                    <h2>@Model.Title.ToUpper()</h2>
+                </div>*@
             <div class="row">
-                <h2>@Model.Title.ToUpper()</h2>
-            </div>
-            <div class="row">
-                <div class="Embed Embed--16by9 -mb2 col-md-8" id="video-player">
+                <div class="Embed Embed--16by9 -mb2 col-md-10" id="video-player">
                     @*<iframe width="560" height="315" src="https://www.youtube.com/embed/@(Model.VideoLink)?autoplay=1&rel=0&enablejsapi=1" frameborder="0" allowfullscreen="" id="widget2"></iframe>*@
-                    <iframe width="560" height="500" src="https://www.youtube.com/embed/oMf64n9H4Fg?autoplay=1&rel=0&enablejsapi=1" allowfullscreen="allowfullscreen" id="video-player-iframe"></iframe>
-                </div>
+                    <iframe width="560" height="500" src="https://www.youtube.com/embed/@(Model.VideoLink)?autoplay=1&rel=0&enablejsapi=1" allowfullscreen="allowfullscreen" id="video-player-iframe"></iframe>
+                    <div id="video-details">
+                        <div id="tags">
+                            <p>
+                                @if (tagsList.Count > 0)
+                                {
+                                    foreach (string tag in tagsList)
+                                    {
+                                        <a href="/videos/all?searchkey=@tag">@('#' + tag)</a>
+                                    }
+                                }
 
+                            </p>
+                        </div>
+                        <h3>@Model.Title</h3>
+                        <div id="video-oprations">
+                            <div class="view-count">@(Model.ViewCount + " ") <span>views</span></div>
+                            <div class="oprations">
+                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span>@Model.LikeCount</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="share">
+                        <div id="facebooklink">
+                            <a class="btn btn--icon bg--facebook" target="_blank" href="/"><span class="btn__text"><i class="socicon socicon-facebook"></i>Share on Facebook</span></a>
+                        </div>
+                        <div id="twitterlink">
+                            <a class="btn btn--icon bg--twitter" target="_blank" href="/"><span class="btn__text"><i class="socicon socicon-twitter"></i>Share on Twitter</span></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -88,5 +120,5 @@
 
 
     </script>
-    <script src="~/js/scripts.js"></script>
+
 }
