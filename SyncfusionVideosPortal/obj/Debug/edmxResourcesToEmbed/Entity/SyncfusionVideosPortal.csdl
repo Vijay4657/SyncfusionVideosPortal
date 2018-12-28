@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="devsyncdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Hackathon_Control">
+    <Key>
+      <PropertyRef Name="ControlId" />
+    </Key>
+    <Property Name="ControlId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ControlName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PlatformId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hackathon_Platform" Relationship="Self.FK_Hackathon_Control_Hackathon_Platform_PlatformId" FromRole="Hackathon_Control" ToRole="Hackathon_Platform" />
+    <NavigationProperty Name="Hackathon_Videos" Relationship="Self.FK_Hackathon_Videos_Hackathon_Control_ControlId" FromRole="Hackathon_Control" ToRole="Hackathon_Videos" />
+  </EntityType>
+  <EntityType Name="Hackathon_Platform">
+    <Key>
+      <PropertyRef Name="PlatformId" />
+    </Key>
+    <Property Name="PlatformId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlatformName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hackathon_Control" Relationship="Self.FK_Hackathon_Control_Hackathon_Platform_PlatformId" FromRole="Hackathon_Platform" ToRole="Hackathon_Control" />
+    <NavigationProperty Name="Hackathon_Videos" Relationship="Self.FK_Hackathon_Videos_Hackathon_Platform_PlatformId" FromRole="Hackathon_Platform" ToRole="Hackathon_Videos" />
+  </EntityType>
+  <EntityType Name="Hackathon_Videos">
+    <Key>
+      <PropertyRef Name="VideoId" />
+    </Key>
+    <Property Name="VideoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SlugTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PlatformId" Type="Int32" Nullable="false" />
+    <Property Name="ControlId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VideoLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsLatest" Type="Boolean" Nullable="false" />
+    <Property Name="IsFeature" Type="Boolean" Nullable="false" />
+    <Property Name="ThumbnailLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hackathon_Control" Relationship="Self.FK_Hackathon_Videos_Hackathon_Control_ControlId" FromRole="Hackathon_Videos" ToRole="Hackathon_Control" />
+    <NavigationProperty Name="Hackathon_Platform" Relationship="Self.FK_Hackathon_Videos_Hackathon_Platform_PlatformId" FromRole="Hackathon_Videos" ToRole="Hackathon_Platform" />
+    <Property Name="platformshortname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="LikeCount" Type="Int32" />
+    <Property Name="ViewCount" Type="Int32" />
+    <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hackathon_Comments" Relationship="devsyncdbModel.FK__Hackathon__Video__5424E8BF" FromRole="Hackathon_Videos" ToRole="Hackathon_Comments" />
+  </EntityType>
+  <Association Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId">
+    <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
+    <End Role="Hackathon_Control" Type="Self.Hackathon_Control" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hackathon_Platform">
+        <PropertyRef Name="PlatformId" />
+      </Principal>
+      <Dependent Role="Hackathon_Control">
+        <PropertyRef Name="PlatformId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hackathon_Videos_Hackathon_Control_ControlId">
+    <End Role="Hackathon_Control" Type="Self.Hackathon_Control" Multiplicity="1" />
+    <End Role="Hackathon_Videos" Type="Self.Hackathon_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hackathon_Control">
+        <PropertyRef Name="ControlId" />
+      </Principal>
+      <Dependent Role="Hackathon_Videos">
+        <PropertyRef Name="ControlId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hackathon_Videos_Hackathon_Platform_PlatformId">
+    <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
+    <End Role="Hackathon_Videos" Type="Self.Hackathon_Videos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hackathon_Platform">
+        <PropertyRef Name="PlatformId" />
+      </Principal>
+      <Dependent Role="Hackathon_Videos">
+        <PropertyRef Name="PlatformId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="devsyncdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Hackathon_Control" EntityType="Self.Hackathon_Control" />
+    <EntitySet Name="Hackathon_Platform" EntityType="Self.Hackathon_Platform" />
+    <EntitySet Name="Hackathon_Videos" EntityType="Self.Hackathon_Videos" />
+    <AssociationSet Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId" Association="Self.FK_Hackathon_Control_Hackathon_Platform_PlatformId">
+      <End Role="Hackathon_Platform" EntitySet="Hackathon_Platform" />
+      <End Role="Hackathon_Control" EntitySet="Hackathon_Control" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hackathon_Videos_Hackathon_Control_ControlId" Association="Self.FK_Hackathon_Videos_Hackathon_Control_ControlId">
+      <End Role="Hackathon_Control" EntitySet="Hackathon_Control" />
+      <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hackathon_Videos_Hackathon_Platform_PlatformId" Association="Self.FK_Hackathon_Videos_Hackathon_Platform_PlatformId">
+      <End Role="Hackathon_Platform" EntitySet="Hackathon_Platform" />
+      <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
+    </AssociationSet>
+    <EntitySet Name="Hackathon_Comments" EntityType="devsyncdbModel.Hackathon_Comments" />
+    <AssociationSet Name="FK__Hackathon__Video__5424E8BF" Association="devsyncdbModel.FK__Hackathon__Video__5424E8BF">
+      <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
+      <End Role="Hackathon_Comments" EntitySet="Hackathon_Comments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hackathon_Comments">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VideoId" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hackathon_Videos" Relationship="devsyncdbModel.FK__Hackathon__Video__5424E8BF" FromRole="Hackathon_Comments" ToRole="Hackathon_Videos" />
+  </EntityType>
+  <Association Name="FK__Hackathon__Video__5424E8BF">
+    <End Type="devsyncdbModel.Hackathon_Videos" Role="Hackathon_Videos" Multiplicity="0..1" />
+    <End Type="devsyncdbModel.Hackathon_Comments" Role="Hackathon_Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hackathon_Videos">
+        <PropertyRef Name="VideoId" />
+      </Principal>
+      <Dependent Role="Hackathon_Comments">
+        <PropertyRef Name="VideoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
