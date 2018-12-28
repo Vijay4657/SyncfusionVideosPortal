@@ -1,0 +1,205 @@
+﻿@using SyncfusionVideosPortal.Entity;
+@model SyncfusionVideosPortal.Entity.Hackathon_Videos
+@{
+    Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
+    var DisplayName = ViewBag.PlatformName;
+    var tagsList = string.IsNullOrEmpty(Model.Tags) ? new List<string>() : Model.Tags.Split(',').ToList();
+    var comments = ViewBag.CommentDetails as List<Hackathon_Comments>;
+    comments = comments.OrderByDescending(comment => comment.CreatedDate).ToList();
+    int videoId = Model.VideoId;
+    var viewCount = Model.ViewCount > 0 ? Model.ViewCount : 0;
+}
+@section StyleSection
+{ <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/DetailsPage.css" rel="stylesheet" />
+    <link href="~/Content/Home.css" rel="stylesheet" />
+    <link href="~/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+}
+@section MetaSection
+{
+    <title> @Model.Title | @DisplayName </title>
+    <meta name="description" content="Read in-depth examples of how Syncfusion has helped customers achieve their project goals with Essential Studio components and frameworks and enterprise business intelligence solutions." />
+}
+
+@section MainSection
+{
+    @Html.Hidden("video-id", Model.VideoId)
+    @Html.Hidden("slug", Model.SlugTitle)
+
+    <nav id="menu2" class="home bar bar-2 hidden-xs bar--absolute bar--transparent" style="position: relative;background-color: #7a7adb;background-image: linear-gradient(315deg, #7a7adb 0%, #170e13 74%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 text-left-sm hidden-xs">
+                    <div class="bar__module video-logo">
+                        <p>
+                            <a class="videos-logo" href="/">
+                                <img class="logo logo-light" alt="logo" src="/img/logo-videos.png">
+                            </a>
+                            <a class="heading-menu" href="/">
+                                Videos Portal
+                            </a>
+                            |
+                            <a class="heading-menu" href="/videos/@Model.platformshortname">
+                                @DisplayName
+                            </a>
+                        </p>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-2 col-md-pull-2">
+
+                    <!--end module-->
+                </div>
+                <div class="col-md-5 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <a class="btn btn--sm type--uppercase" href="/videos/upload">
+                            <span class="btn__text">
+                                Upload
+                            </span>
+                        </a>
+
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+
+    <div class="VideoDetailsPage">
+        <div class="container">
+            @*<div class="row">
+                    <h2>@Model.Title.ToUpper()</h2>
+                </div>*@
+            <div class="row">
+                <div class="Embed Embed--16by9 -mb2 col-md-10" id="video-player">
+                    @*<iframe width="560" height="315" src="https://www.youtube.com/embed/@(Model.VideoLink)?autoplay=1&rel=0&enablejsapi=1" frameborder="0" allowfullscreen="" id="widget2"></iframe>*@
+                    <iframe width="560" height="500" src="https://www.youtube.com/embed/@(Model.VideoLink)?autoplay=1&rel=0&enablejsapi=1" allowfullscreen="allowfullscreen" id="video-player-iframe"></iframe>
+                    <div id="video-details">
+                        <div id="tags">
+                            <p>
+                                @if (tagsList.Count > 0)
+                                {
+                                    foreach (string tag in tagsList)
+                                    {
+                                        <a href="/videos/all?searchkey=@tag">@('#' + tag)</a>
+                                    }
+                                }
+
+                            </p>
+                        </div>
+                        <h3>@Model.Title</h3>
+                        <div id="video-oprations">
+                            <div class="view-count">@((Model.ViewCount > 0 ? Model.ViewCount.ToString() : "0") + " ") <span>views</span></div>
+                            <div class="oprations">
+                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@(Model.LikeCount > 0 ? Model.LikeCount.ToString() : "0")</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="video-comments">
+                        @if (comments.Count > 0)
+                        {
+                            <h5>
+                                @comments.Count Comments
+                            </h5>
+                        }
+                        else
+                        {
+                            <h5>
+                                No Comments
+                            </h5>
+                        }
+                        <div id="comment-area">
+                            <label>Add comment</label>
+                            <textarea id="comment-value"></textarea>
+                            <button id="comment-submit" type="submit" class="btn btn--primary type--uppercase">Submit</button>
+                        </div>
+                        <div id="all-comment">
+                            @foreach (var comment in comments)
+                            {
+                                <div class="comment-section">
+                                    <img id="img" class="style-scope yt-img-shadow" alt="Anonymous User" height="40" width="40" src="https://yt3.ggpht.com/-T9KYn4TGCpE/AAAAAAAAAAI/AAAAAAAAAAA/EGSeSJAdxaY/s48-c-k-no-mo-rj-c0xffffff/photo.jpg">
+                                    <div class="comment-content">
+                                        <p class="details">Anonymous User on @comment.CreatedDate.ToString("dd MMM, yyyy")</p>
+                                        <p class="content">@comment.Comment</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="share">
+                        <div id="facebooklink">
+                            <a class="btn btn--icon bg--facebook" target="_blank" href="/"><span class="btn__text"><i class="socicon socicon-facebook"></i>Share on Facebook</span></a>
+                        </div>
+                        <div id="twitterlink">
+                            <a class="btn btn--icon bg--twitter" target="_blank" href="/"><span class="btn__text"><i class="socicon socicon-twitter"></i>Share on Twitter</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@section ScriptSection{
+
+    @*Youtube video player functions.*@
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#video-player-iframe").prop("width", document.getElementById("video-player-iframe").offsetHeight * 16 / 9);
+
+            $("#like-video").click(function () {
+                likeVideoFunction();
+            });
+
+            $(document).on("click", "#comment-submit", function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                $("#comment-submit").prop("disabled", "disabled");
+                var comment = $("#comment-value").val();
+                postComment(comment);
+            });
+
+            function likeVideoFunction() {
+                if (!$("#like-video").hasClass("liked")) {
+                    $.ajax({
+                    type: 'POST',
+                    url: "/Platform/AddLikeCount",
+                    data: { "videoId": @videoId },
+                    success: function (data) {
+                        $("#like-video").addClass("liked");
+                        $("#like-video").attr("title", "You liked the video");
+                        $("#currentCount").text(data.count);
+                    }
+                });
+                }
+            }
+
+            function postComment(comment) {
+                 $.ajax({
+                    type: 'POST',
+                     url: "/Platform/UpdateComments",
+                     data: { "videoId": @videoId, "comment": comment },
+                     success: function (data) {
+                         if (data.result == true) {
+                             location.reload();
+                         }
+                         console.log(data.isSuccess);
+                    }
+                });
+            }
+
+        });
+
+
+    </script>
+
+}

@@ -5,11 +5,45 @@
 
 @section StyleSection
 {
-    
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/stack-interface.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/socicon.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/flickity.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/iconsmind.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/jquery.steps.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/index.min.css" rel="stylesheet" />
+    <link href="~/Content/Home.css" rel="stylesheet" />
 }
-
+@section ScriptSection
+{
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/flickity.min.js"></script>
+    <script src="js/easypiechart.min.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/datepicker.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/ytplayer.min.js"></script>
+    <script src="js/lightbox.min.js"></script>
+    <script src="js/granim.min.js"></script>
+    <script src="js/jquery.steps.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/twitterfetcher.min.js"></script>
+    <script src="js/spectragram.min.js"></script>
+    <script src="js/smooth-scroll.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="~/Scripts/jquery.matchHeight.js"></script>
+    <script>
+        $(".card__top").matchHeight();
+        $(".card__body").matchHeight();
+    </script>
+}
 @section MetaSection
 {
+    <title>Videos Portal</title>
     <meta name="description" content="Read in-depth examples of how Syncfusion has helped customers achieve their project goals with Essential Studio components and frameworks and enterprise business intelligence solutions." />
 }
 
@@ -17,9 +51,233 @@
 
 @section MainSection
 {
-    <div id="videos-home">
+    <nav id="menu2" class="home bar bar-2 hidden-xs bar--absolute bar--transparent">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 text-left-sm hidden-xs">
+                    <div class="bar__module video-logo">
+                        <p>
+                            <a class="videos-logo" href="/">
+                                <img class="logo logo-light" alt="logo" src="img/logo-videos.png">
+                            </a>
+                            <a class="heading-menu" href="/">
+                                Videos Portal
+                            </a>
+                        </p>
+                    </div>
+                    <!--end module-->
+                </div>
+                <div class="col-md-2 col-md-pull-2">
 
+                    <!--end module-->
+                </div>
+                <div class="col-md-5 text-right text-left-xs text-left-sm">
+                    <div class="bar__module">
+                        <a class="btn btn--sm type--uppercase" target="_blank" style="border-width: 2px;border-color: #fff;" href="/videos/upload">
+                            <span class="btn__text">
+                                Upload
+                            </span>
+                        </a>
+
+                    </div>
+                    <!--end module-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </nav>
+    @*<section id="home-banner" class="imagebg videobg height-30 text-center" data-overlay="4">
+        <div class="youtube-background" data-video-url="TmQOFWX9D3o" data-start-at="1"></div>
+        <div class="background-image-holder">
+            <img alt="image" src="img/logo-videos.png" />
+        </div>
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 style="margin-bottom: 10px;margin-top: 15px;font-size: 3em;font-weight: 400;">Videos Portal</h2>
+                    <h4>Get up and running faster with free online videos</h4>
+                </div>
+            </div>
+        </div>
+    </section>*@
+    <section  id="home-banner" class="imagebg videobg height-30 text-center" data-overlay="4">
+        <video autoplay loop muted>
+            <source src="video/banner.mp4" type="video/mp4">
+        </video>
+        <div class="background-image-holder">
+            <img alt="image" src="poser.jpg" />
+        </div>
+        <div class="container pos-vertical-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 style="margin-bottom: 10px;margin-top: 15px;font-size: 3em;font-weight: 400;">Videos Portal</h2>
+                    <h4>Learn more about our company, products, events etc</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*<div id="main-heading">
+            <div class="container">
+                <div class="row">
+                    <h2>Videos by Product</h2>
+                </div>
+            </div>
+
+        </div>*@
+    <div id="platform-details" class="container body-content">
+        <h1>Watch our Videos based on Products</h1>
+        <div class="bodyContent">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 product-mobile-view">
+                <div class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-6 col-xs-12 no-padding">
+                    <div>
+                        <ul class="liststyle">
+                            <li class="productheader-home list-tpadding">WEB - Pure JavaScript</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/javascript-ej2">JavaScript</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/aspnet-core-ej2">ASP.NET Core</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/aspnet-mvc-ej2">ASP.NET MVC</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/angular">Angular</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/react">React</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/vue">Vue</a>
+                                </li>
+                                <li>
+                                </li>
+                                <li>
+                                </li>
+                            </ul>
+                            <br>
+
+                            <li class="productheader-home list-tpadding">WEB - jQuery Based</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/javascript">JavaScript</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/aspnet-core">ASP.NET Core</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/aspnet-mvc">ASP.NET MVC</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/aspnet-webforms">ASP.NET Web Forms</a>
+                                </li>
+                                <li class="visible-xs"><br></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-6 col-xs-12 no-padding">
+                    <div>
+                        <ul class="liststyle">
+                            <li class="productheader-home list-tpadding">MOBILE</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/xamarin-forms">Xamarin.Forms</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/xamarin-android">Xamarin.Android</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/xamarin-ios">Xamarin.iOS</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/javascript">JavaScript</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/uwp">UWP</a>
+                                </li>
+                                <li class="hidden-xs">
+                                    <br>
+                                </li>
+                            </ul>
+                            <br>
+                            <li class="productheader-home list-tpadding">DATA PLATFORM</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/dashboard-platform">Dashboard Platform</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/reporting-tool">Report Platform</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/bigdata-platform">Big Data Platform</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a class="product-home-list" href="/videos/dataintegration-platform">Data Integration Platform</a>
+                                </li>
+                                <li class="visible-xs visible-sm">
+                                    <br>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-6 col-xs-12 no-padding">
+                    <div>
+                        <ul class="liststyle">
+                            <li class="productheader-home list-tpadding">DESKTOP</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a href="/videos/winforms" class="product-home-list">WinForms</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a href="/videos/wpf" class="product-home-list">WPF</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a href="/videos/uwp" class="product-home-list">UWP</a>
+                                </li>
+                            </ul>
+                            <br>
+                            <li class="productheader-home list-tpadding">OTHERS</li>
+                            <li class="hline-bottom "></li>
+                            <ul class="liststyle list-tpadding">
+                                <li class="productTitle">
+                                    <a href="/videos/metro-studio" class="product-home-list">Metro Studio</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a href="/videos/install-and-configuration" class="product-home-list">Install and Configuration</a>
+                                </li>
+                                <li class="productTitle">
+                                    <a href="/videos/general" class="product-home-list">General</a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <div id="commonAlertDialog"></div>
+        </div>
+
+        <div>
+            <div id="addQuestionDialog"></div>
+        </div>
     </div>
+    <div id="top-videos">
+        <div class="container"><h4>Latest Videos</h4></div>
+            @Html.Partial("_recendvideoslist")
+    </div>
+
 
 }
 

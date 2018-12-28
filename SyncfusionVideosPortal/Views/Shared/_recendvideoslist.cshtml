@@ -1,0 +1,74 @@
+﻿@model SyncfusionVideosPortal.Models.PlatformModel
+@{
+    var topVideoCount = 0;
+    var VideosDetails = SyncfusionVideosPortal.Models.PlatformModel.GetPlatformVideoList().Where(v => v.IsLatest).ToList();
+}
+<section class=" ">
+    <div class="container">
+        <div class="row">
+            <div class="masonry">
+                <div class="masonry__container masonry--active case-studies-section">
+                    @foreach (var videodetails in VideosDetails)
+                    {
+                        if (topVideoCount < 3)
+                        {
+                        <div class="col-sm-4 masonry__item case-studies-segments @videodetails.platformshortname">
+                            <div class="card card-1 boxed boxed--sm boxed--border">
+                                <div class="card__top">
+                                    <div class="card__avatar">
+                                        <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
+                                            <strong>@videodetails.Title</strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card__body">
+                                    <a href="/videos/@videodetails.Hackathon_Platform.ShortName/@videodetails.SlugTitle">
+                                        <img src="@videodetails.ThumbnailLink" alt="Image" class="border--round">
+                                    </a>
+                                    <p>
+                                        @(videodetails.Description.Length > 160 ? videodetails.Description.Substring(0, 160).TrimEnd() + "..." : videodetails.Description)
+                                    </p>
+                                </div>
+                                <div class="card__bottom">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <div class="card__action">
+                                                <a style="cursor: default;">
+                                                    <i class="material-icons">comment</i>
+                                                    <span>@videodetails.Hackathon_Comments.Count()</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="card__action">
+                                                <a style="cursor: default;">
+                                                    <i class="material-icons">favorite</i>
+                                                    <span>@videodetails.LikeCount</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="card__action">
+                                                <a style="cursor: default;">
+                                                    <i class="material-icons">visibility</i>
+                                                    <span>@videodetails.ViewCount</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        topVideoCount++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
