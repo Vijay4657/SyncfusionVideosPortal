@@ -5,6 +5,7 @@
     var DisplayName = ViewBag.PlatformName;
     var tagsList = string.IsNullOrEmpty(Model.Tags) ? new List<string>() : Model.Tags.Split(',').ToList();
     var comments = ViewBag.CommentDetails as List<Hackathon_Comments>;
+    comments = comments.OrderByDescending(comment => comment.CreatedDate).ToList();
     int videoId = Model.VideoId;
 }
 @section StyleSection
@@ -186,6 +187,9 @@
                      url: "/Platform/UpdateComments",
                      data: { "videoId": @videoId, "comment": comment },
                      success: function (data) {
+                         if (data.result == true) {
+                             location.reload();
+                         }
                          console.log(data.isSuccess);
                     }
                 });

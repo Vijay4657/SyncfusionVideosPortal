@@ -233,7 +233,7 @@
             List<Hackathon_Comments> commentDetails = new List<Hackathon_Comments>();
             try
             {
-                int platformId = GetPlatformId(platform);
+                int platformId = GetPlatformIdFromShortName(platform);
                 using (var entity = new devsyncdbEntities())
                 {
                     commentDetails = (from video in entity.Hackathon_Videos
