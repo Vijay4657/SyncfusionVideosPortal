@@ -150,6 +150,8 @@
                 videosEntry.VideoLink = youTubeLink;
                 videosEntry.platformshortname = platform;
                 videosEntry.Tags = tag;
+                videosEntry.ViewCount = 0;
+                videosEntry.LikeCount = 0;
                 entity.Hackathon_Videos.Add(videosEntry);
                 entity.SaveChanges();
                 isSuccess = true;
