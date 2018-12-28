@@ -189,6 +189,98 @@
         }
 
         /// <summary>
+        /// Method to Update the like count of the 
+        /// </summary>
+        /// <param name="videoId">Video Id</param>
+        public bool AddLikeCount(int videoId)
+        {
+            bool isUpdated = false;
+            try
+            {
+                int existingCount;
+                using (var entity = new devsyncdbEntities())
+                {
+                    var videoDetail = (from video in entity.Hackathon_Videos
+                                       where video.VideoId == videoId && video.IsActive
+                                       select video).FirstOrDefault();
+                    if (videoDetail != null)
+                    {
+                        existingCount = (int)videoDetail.LikeCount;
+                        int newCount = existingCount + 1;
+                        videoDetail.LikeCount = newCount;
+                        entity.SaveChanges();
+                        isUpdated = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return isUpdated;
+        }
+
+        /// <summary>
+        /// Get the comment details for the video details page
+        /// </summary>
+        /// <param name="platform">platform value</param>
+        /// <param name="slugTitle">slug title</param>
+        /// <returns>returns the comment details page</returns>
+        public List<Hackathon_Comments> GetCommentDetails(string platform, string slugTitle)
+        {
+            List<Hackathon_Comments> commentDetails = new List<Hackathon_Comments>();
+            try
+            {
+                int platformId = GetPlatformId(platform);
+                using (var entity = new devsyncdbEntities())
+                {
+                    commentDetails = (from video in entity.Hackathon_Videos
+                                      join comment in entity.Hackathon_Comments on video.VideoId equals comment.VideoId
+                                      where video.PlatformId == platformId && video.SlugTitle == slugTitle
+                                      select comment).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return commentDetails;
+        }
+
+        /// <summary>
+        /// Add new comment for video
+        /// </summary>
+        /// <param name="videoId">video Id</param>
+        /// <param name="comment">comment Details</param>
+        /// <returns>adds the new comment for video</returns>
+        public bool AddNewComment(int videoId, string comment)
+        {
+            bool isSuccess = false;
+            try
+            {
+                using (var entity = new devsyncdbEntities())
+                {
+                    Hackathon_Comments commentDetails = new Hackathon_Comments();
+                    commentDetails.VideoId = videoId;
+                    commentDetails.Comment = comment;
+                    commentDetails.CreatedDate = DateTime.Now;
+                    commentDetails.IsActive = true;
+                    entity.Hackathon_Comments.Add(commentDetails);
+                    entity.SaveChanges();
+                    isSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return isSuccess;
+        }
+
+        /// <summary>
         /// Method to get the platform Id
         /// </summary>
         /// <param name="platformName">platform name</param>
@@ -200,7 +292,7 @@
             {
                 var entity = new devsyncdbEntities();
                 platformId = (from platform in entity.Hackathon_Platform
-                              where platform.PlatformName == PlatformName && platform.IsActive
+                              where platform.PlatformName == platformName && platform.IsActive
                               select platform.PlatformId).First();
             }
             catch (Exception ex)
