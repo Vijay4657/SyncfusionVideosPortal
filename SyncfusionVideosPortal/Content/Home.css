@@ -5,7 +5,8 @@ body #menu2 .video-logo img {
   position: relative;
   left: 0;
   top: 0;
-  transform: none; }
+  transform: none;
+  padding: 0; }
 
 body #menu2 .video-logo .videos-logo {
   color: #fff;
