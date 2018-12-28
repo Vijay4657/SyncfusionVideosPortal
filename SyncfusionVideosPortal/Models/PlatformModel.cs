@@ -281,6 +281,31 @@
         }
 
         /// <summary>
+        /// Method to get the platform display name
+        /// </summary>
+        /// <param name="shortName">short Name</param>
+        /// <returns>returns the platform display name from short name</returns>
+        public string GetPlatformDisplayName(string shortName)
+        {
+            string platformName = string.Empty;
+            try
+            {
+                using (var entity = new devsyncdbEntities())
+                {
+                    platformName = (from platform in entity.Hackathon_Platform
+                                    where platform.ShortName == shortName && platform.IsActive
+                                    select platform.PlatformName).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return platformName;
+        }
+
+        /// <summary>
         /// Method to get the platform Id
         /// </summary>
         /// <param name="platformName">platform name</param>

@@ -1,7 +1,7 @@
 ﻿@model SyncfusionVideosPortal.Entity.Hackathon_Videos
 @{
     Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
-
+    var DisplayName = ViewBag.PlatformName;
 }
 @section StyleSection
 { <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
@@ -32,7 +32,7 @@
                             </a>
                             | 
                             <a class="heading-menu" href="/videos/@Model.platformshortname">
-                                @Model.platformshortname
+                                @DisplayName
                             </a>
                         </p>
                     </div>

@@ -34,6 +34,7 @@
             PlatformModel platformModel = new PlatformModel();
             Hackathon_Videos videoDetails = platformModel.GetVideoDetails(platform, slugTitle);
             ViewBag.CommentDetails = platformModel.GetCommentDetails(platform, slugTitle);
+            ViewBag.PlatformName = platformModel.GetPlatformDisplayName(platform);
             return View(videoDetails);
         }
 
