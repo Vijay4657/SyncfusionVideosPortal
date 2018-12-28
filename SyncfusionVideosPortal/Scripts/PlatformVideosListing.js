@@ -546,11 +546,11 @@ function RefreshCaseStudies() {
             // to set industry section.
             if ($(".industry_select_picker").val() == "all") {
                 $(".results-section h2 #industry-text").text("All");
-                $(".results-section h2 span:last-child").text("Industries");
+                $(".results-section h2 span:last-child").text("Platform");
 
             } else {
                 $(".results-section h2 #industry-text").text('"' + $(".industry_select_picker [value=" + $(".industry_select_picker").val() + "]").text() + '"');
-                $(".results-section h2 span:last-child").text("Industry");
+                $(".results-section h2 span:last-child").text("Platform");
             }
 
             $(".results-section").slideDown("slow");
