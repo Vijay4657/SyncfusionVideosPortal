@@ -18,7 +18,9 @@
         /// <returns></returns>
         public ActionResult Upload()
         {
-            return View();
+            PlatformModel platform = new PlatformModel();
+            platform.PlatformList = PlatformModel.getPlatformList();
+            return View(platform);
         }
         
         /// <summary>
@@ -28,17 +30,19 @@
         /// <param name="description">description value</param>
         /// <param name="platform">platform value</param>
         /// <param name="isLatest">latest video</param>
+        /// <param name="isFeature">feature video</param>
         /// <param name="youTubeLink">youtube link</param>
         /// <param name="thumbnailLink">thumb nail link</param>
+        /// <param name="tag">tag</param>
         /// <returns>Puts the database entry for the video link entries</returns>
         [HttpPost]
-        public ActionResult UploadVideo(string title, string description, string platform, bool isLatest, string youTubeLink, string thumbnailLink)
+        public ActionResult UploadVideo(string title, string description, string platform, bool isLatest, bool isFeature, string youTubeLink, string thumbnailLink, string tag)
         {
             bool isSuccess = true;
             try
             {
                 PlatformModel platformModel = new PlatformModel();
-                isSuccess = platformModel.NewVideoUpload(title, description, platform, isLatest, youTubeLink, thumbnailLink);
+                isSuccess = platformModel.NewVideoUpload(title, description, platform, isLatest, youTubeLink, thumbnailLink, tag);
                 return Json(new { result = isSuccess }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

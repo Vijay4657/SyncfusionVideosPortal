@@ -14,6 +14,12 @@ namespace SyncfusionVideosPortal
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Update Videos",
+                url: "updatevideo",
+                defaults: new { controller = "Upload", action = "UploadVideo" }
+            );
+
+            routes.MapRoute(
                 name: "UploadPage",
                 url: "videos/upload",
                 defaults: new { controller = "Upload", action = "Upload" }
