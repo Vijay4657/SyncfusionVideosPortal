@@ -6,6 +6,7 @@
     using System.Web;
     using System.Web.Mvc;
     using SyncfusionVideosPortal.Models;
+    using SyncfusionVideosPortal.Entity;
 
     /// <summary>
     /// Controller for platform details page
@@ -22,6 +23,17 @@
             platform.PlatformList = PlatformModel.getPlatformList();
             platform.VideosDetails = PlatformModel.GetPlatformVideoList();
             return View(platform);
+        }
+
+        /// <summary>
+        /// Action for showing the video details page
+        /// </summary>
+        /// <returns>shows the video details page</returns>
+        public ActionResult VideoDetailsPage(string platform, string slugTitle)
+        {
+            PlatformModel platformModel = new PlatformModel();
+            Hackathon_Videos videoDetails = platformModel.GetVideoDetails(platform, slugTitle);
+            return View(videoDetails);
         }
     }
 }
