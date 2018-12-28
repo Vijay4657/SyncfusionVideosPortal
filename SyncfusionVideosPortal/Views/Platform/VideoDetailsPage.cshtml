@@ -93,7 +93,7 @@
                         <div id="video-oprations">
                             <div class="view-count">@((Model.ViewCount > 0 ? Model.ViewCount.ToString() : "0") + " ") <span>views</span></div>
                             <div class="oprations">
-                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@(Model.LikeCount > 0 ? Model.ViewCount.ToString() : "0")</span>
+                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@(Model.LikeCount > 0 ? Model.LikeCount.ToString() : "0")</span>
                             </div>
 
                         </div>
