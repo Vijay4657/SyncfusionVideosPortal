@@ -160,6 +160,35 @@
         }
 
         /// <summary>
+        /// Method to Update the viewcount of the 
+        /// </summary>
+        /// <param name="slugTitle">slug title</param>
+        public void AddViewCount(string slugTitle)
+        {
+            try
+            {
+                int existingCount;
+                using (var entity = new devsyncdbEntities())
+                {
+                    var videoDetail = (from video in entity.Hackathon_Videos
+                                     where video.SlugTitle == slugTitle && video.IsActive
+                                     select video).FirstOrDefault();
+                    if (videoDetail != null)
+                    {
+                        existingCount = (int)videoDetail.ViewCount;
+                        int newCount = existingCount + 1;
+                        videoDetail.ViewCount = newCount;
+                        entity.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        /// <summary>
         /// Method to get the platform Id
         /// </summary>
         /// <param name="platformName">platform name</param>
@@ -229,6 +258,8 @@
 
             }
 
+            //// To Add the video view count while visiting the page
+            AddViewCount(slugTitle);
             return videoDetails;
         }
 
