@@ -7,6 +7,7 @@
     var comments = ViewBag.CommentDetails as List<Hackathon_Comments>;
     comments = comments.OrderByDescending(comment => comment.CreatedDate).ToList();
     int videoId = Model.VideoId;
+    var viewCount = Model.ViewCount > 0 ? Model.ViewCount : 0;
 }
 @section StyleSection
 { <link href="~/css/theme.css" rel="stylesheet" type="text/css" media="all" />
@@ -16,6 +17,7 @@
 }
 @section MetaSection
 {
+    <title> @Model.Title | @DisplayName </title>
     <meta name="description" content="Read in-depth examples of how Syncfusion has helped customers achieve their project goals with Essential Studio components and frameworks and enterprise business intelligence solutions." />
 }
 
@@ -89,9 +91,9 @@
                         </div>
                         <h3>@Model.Title</h3>
                         <div id="video-oprations">
-                            <div class="view-count">@(Model.ViewCount + " ") <span>views</span></div>
+                            <div class="view-count">@((Model.ViewCount > 0 ? Model.ViewCount.ToString() : "0") + " ") <span>views</span></div>
                             <div class="oprations">
-                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@Model.LikeCount</span>
+                                <div id="like-video" title="Like the video" class="glyphicon glyphicon-thumbs-up"></div><span id="currentCount">@(Model.LikeCount > 0 ? Model.ViewCount.ToString() : "0")</span>
                             </div>
 
                         </div>
