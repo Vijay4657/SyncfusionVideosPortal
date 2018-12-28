@@ -47,12 +47,6 @@ function videoUpload() {
         $("#errortag").html("Required field");
     }
 
-    if ((document.getElementById("existingLink").checked) && (embeddedVideoLink != "" && embeddedVideoLink != null)) {
-        if (!embeddedVideoLink.includes("youtube.com")) {
-            $("#errorvideolink").html("Video Link should contains youtube.com");
-        }        
-    }
-
 
     var errorTitlevalue = document.getElementById("errortitle").value;
     var errordescriptionvalue = document.getElementById("errordescription").value;
@@ -83,7 +77,8 @@ function videoUpload() {
             },
             success: function (response) {
                 if (response.result === true) {
-                    
+                    var slug = response.SlugTitle;
+                    window.location.href = "/videos/" + platform + "/" + slug;
                 }
                 else {
                     

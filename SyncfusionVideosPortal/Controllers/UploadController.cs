@@ -43,7 +43,12 @@
             {
                 PlatformModel platformModel = new PlatformModel();
                 isSuccess = platformModel.NewVideoUpload(title, description, platform, isLatest, youTubeLink, thumbnailLink, tag);
-                return Json(new { result = isSuccess }, JsonRequestBehavior.AllowGet);
+                string slugTitle = string.Empty;
+                if (isSuccess)
+                {
+                    slugTitle = PlatformModel.GetSlugTitle(title);
+                }
+                return Json(new { result = isSuccess, SlugTitle = slugTitle }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

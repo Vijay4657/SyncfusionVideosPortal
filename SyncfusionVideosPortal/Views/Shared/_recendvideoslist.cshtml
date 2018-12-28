@@ -1,7 +1,7 @@
 ﻿@model SyncfusionVideosPortal.Models.PlatformModel
 @{
     var topVideoCount = 0;
-    var VideosDetails = SyncfusionVideosPortal.Models.PlatformModel.GetPlatformVideoList();
+    var VideosDetails = SyncfusionVideosPortal.Models.PlatformModel.GetPlatformVideoList().Where(v => v.IsLatest).ToList();
 }
 <section class=" ">
     <div class="container">
