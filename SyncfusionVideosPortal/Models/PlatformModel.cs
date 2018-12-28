@@ -127,7 +127,7 @@
         /// <param name="youTubeLink"></param>
         /// <param name="thumbnailLink"></param>
         /// <returns>Puts the database entry for the video link entries</returns>
-        public bool NewVideoUpload(string title, string description, string platform, bool isLatest, string youTubeLink, string thumbnailLink)
+        public bool NewVideoUpload(string title, string description, string platform, bool isLatest, string youTubeLink, string thumbnailLink, string tag)
         {
             bool isSuccess = false;
             try
@@ -136,17 +136,19 @@
                 string slugTitle = string.Empty;
                 slugTitle = GetSlugTitle(title);
                 Hackathon_Videos videosEntry = new Hackathon_Videos();
-                videosEntry.ControlId = 0;
+                videosEntry.ControlId = 1;
                 videosEntry.CreatedDate = DateTime.Now;
                 videosEntry.Description = description;
                 videosEntry.IsActive = true;
                 videosEntry.IsFeature = true;
                 videosEntry.IsLatest = IsLatest;
-                videosEntry.PlatformId = GetPlatformId(platform);
+                videosEntry.PlatformId = GetPlatformIdFromShortName(platform);
                 videosEntry.SlugTitle = slugTitle;
                 videosEntry.ThumbnailLink = thumbnailLink;
                 videosEntry.Title = title;
                 videosEntry.VideoLink = youTubeLink;
+                videosEntry.platformshortname = platform;
+                videosEntry.Tags = tag;
                 entity.Hackathon_Videos.Add(videosEntry);
                 entity.SaveChanges();
                 isSuccess = true;
