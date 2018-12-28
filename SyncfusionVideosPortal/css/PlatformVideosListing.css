@@ -2179,3 +2179,14 @@ div.masonry-filter-container > div:first-child {
 section{
     padding-top:0px;
 }
+.card__action a:not(:hover) {
+    opacity: 1;
+}
+.card__action a i {
+    color: #666666;
+}
+.card__avatar strong{
+    font-weight: 700;
+    color: #333;
+    font-size: 16px;
+}
