@@ -11,6 +11,8 @@
         <AssociationConnector Association="devsyncdbModel.FK_Hackathon_Control_Hackathon_Platform_PlatformId" ManuallyRouted="false" />
         <AssociationConnector Association="devsyncdbModel.FK_Hackathon_Videos_Hackathon_Control_ControlId" ManuallyRouted="false" />
         <AssociationConnector Association="devsyncdbModel.FK_Hackathon_Videos_Hackathon_Platform_PlatformId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="devsyncdbModel.Hackathon_Comments" Width="1.5" PointX="7.5" PointY="2.25" />
+        <AssociationConnector Association="devsyncdbModel.FK__Hackathon__Video__5424E8BF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

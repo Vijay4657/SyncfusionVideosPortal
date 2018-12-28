@@ -137,6 +137,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlatformController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Entity\Hackathon_Comments.cs">
+      <DependentUpon>SyncfusionVideosPortal.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Hackathon_Control.cs">
       <DependentUpon>SyncfusionVideosPortal.tt</DependentUpon>
     </Compile>

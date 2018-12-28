@@ -4,7 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="devsyncdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="devsyncdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'devsyncdb.dbo.Hackathon_Comments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Hackathon_Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hackathon_Control">
           <Key>
             <PropertyRef Name="ControlId" />
@@ -40,7 +54,22 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="platformshortname" Type="varchar" MaxLength="200" />
+          <Property Name="LikeCount" Type="int" />
+          <Property Name="ViewCount" Type="int" />
+          <Property Name="Tags" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK__Hackathon__Video__5424E8BF">
+          <End Role="Hackathon_Videos" Type="Self.Hackathon_Videos" Multiplicity="0..1" />
+          <End Role="Hackathon_Comments" Type="Self.Hackathon_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hackathon_Videos">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="Hackathon_Comments">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId">
           <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
           <End Role="Hackathon_Control" Type="Self.Hackathon_Control" Multiplicity="*" />
@@ -81,6 +110,19 @@
           <EntitySet Name="Hackathon_Control" EntityType="Self.Hackathon_Control" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hackathon_Platform" EntityType="Self.Hackathon_Platform" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hackathon_Videos" EntityType="Self.Hackathon_Videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hackathon_Comments" EntityType="Self.Hackathon_Comments" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Hackathon_Comments].[CommentId] AS [CommentId], 
+    [Hackathon_Comments].[VideoId] AS [VideoId], 
+    [Hackathon_Comments].[Comment] AS [Comment], 
+    [Hackathon_Comments].[CreatedDate] AS [CreatedDate], 
+    [Hackathon_Comments].[IsActive] AS [IsActive]
+    FROM [dbo].[Hackathon_Comments] AS [Hackathon_Comments]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Hackathon__Video__5424E8BF" Association="Self.FK__Hackathon__Video__5424E8BF">
+            <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
+            <End Role="Hackathon_Comments" EntitySet="Hackathon_Comments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId" Association="Self.FK_Hackathon_Control_Hackathon_Platform_PlatformId">
             <End Role="Hackathon_Platform" EntitySet="Hackathon_Platform" />
             <End Role="Hackathon_Control" EntitySet="Hackathon_Control" />
@@ -94,8 +136,7 @@
             <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="devsyncdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -140,6 +181,10 @@
           <NavigationProperty Name="Hackathon_Control" Relationship="Self.FK_Hackathon_Videos_Hackathon_Control_ControlId" FromRole="Hackathon_Videos" ToRole="Hackathon_Control" />
           <NavigationProperty Name="Hackathon_Platform" Relationship="Self.FK_Hackathon_Videos_Hackathon_Platform_PlatformId" FromRole="Hackathon_Videos" ToRole="Hackathon_Platform" />
           <Property Name="platformshortname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LikeCount" Type="Int32" />
+          <Property Name="ViewCount" Type="Int32" />
+          <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hackathon_Comments" Relationship="devsyncdbModel.FK__Hackathon__Video__5424E8BF" FromRole="Hackathon_Videos" ToRole="Hackathon_Comments" />
         </EntityType>
         <Association Name="FK_Hackathon_Control_Hackathon_Platform_PlatformId">
           <End Role="Hackathon_Platform" Type="Self.Hackathon_Platform" Multiplicity="1" />
@@ -193,7 +238,37 @@
             <End Role="Hackathon_Platform" EntitySet="Hackathon_Platform" />
             <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
           </AssociationSet>
+          <EntitySet Name="Hackathon_Comments" EntityType="devsyncdbModel.Hackathon_Comments" />
+          <AssociationSet Name="FK__Hackathon__Video__5424E8BF" Association="devsyncdbModel.FK__Hackathon__Video__5424E8BF">
+            <End Role="Hackathon_Videos" EntitySet="Hackathon_Videos" />
+            <End Role="Hackathon_Comments" EntitySet="Hackathon_Comments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Hackathon_Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Hackathon_Videos" Relationship="devsyncdbModel.FK__Hackathon__Video__5424E8BF" FromRole="Hackathon_Comments" ToRole="Hackathon_Videos" />
+        </EntityType>
+        <Association Name="FK__Hackathon__Video__5424E8BF">
+          <End Type="devsyncdbModel.Hackathon_Videos" Role="Hackathon_Videos" Multiplicity="0..1" />
+          <End Type="devsyncdbModel.Hackathon_Comments" Role="Hackathon_Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hackathon_Videos">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="Hackathon_Comments">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -223,6 +298,9 @@
           <EntitySetMapping Name="Hackathon_Videos">
             <EntityTypeMapping TypeName="devsyncdbModel.Hackathon_Videos">
               <MappingFragment StoreEntitySet="Hackathon_Videos">
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
                 <ScalarProperty Name="platformshortname" ColumnName="platformshortname" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="SlugTitle" ColumnName="SlugTitle" />
@@ -236,6 +314,17 @@
                 <ScalarProperty Name="ThumbnailLink" ColumnName="ThumbnailLink" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hackathon_Comments">
+            <EntityTypeMapping TypeName="devsyncdbModel.Hackathon_Comments">
+              <MappingFragment StoreEntitySet="Hackathon_Comments">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

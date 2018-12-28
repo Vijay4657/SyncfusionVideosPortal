@@ -28,5 +28,6 @@ namespace SyncfusionVideosPortal.Entity
         public virtual DbSet<Hackathon_Control> Hackathon_Control { get; set; }
         public virtual DbSet<Hackathon_Platform> Hackathon_Platform { get; set; }
         public virtual DbSet<Hackathon_Videos> Hackathon_Videos { get; set; }
+        public virtual DbSet<Hackathon_Comments> Hackathon_Comments { get; set; }
     }
 }
